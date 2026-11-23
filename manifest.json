@@ -2,6 +2,7 @@
   "name": "일본어 공부하자",
   "short_name": "일본어 공부",
   "description": "논문 근거 학습법으로 12개 역을 통과하는 일본어 입문 앱",
+  "id": "/",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

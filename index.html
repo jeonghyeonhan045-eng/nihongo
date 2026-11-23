@@ -124,6 +124,8 @@ h2 small{font-size:14px;color:var(--mut);font-weight:600}
 .rdj rt{font-size:.45em;color:var(--mut)}.tok{font:inherit;color:inherit;background:none;border:0;padding:0 1px;border-radius:6px;min-height:44px;line-height:inherit;cursor:pointer}
 .tok.new{text-decoration:underline 2px var(--redt);text-underline-offset:6px}.tok.on{background:color-mix(in srgb,var(--red) 18%,transparent)}
 .gloss{margin:8px 0;padding:10px 12px;border-radius:12px;background:var(--bg);border:1px solid var(--line);font-size:17px}.btn.sm{min-height:44px;font-size:14px;padding:4px 10px;margin-left:6px}
+.ib{display:flex;flex-wrap:wrap;align-items:flex-start;gap:10px;margin:0 0 12px;padding:12px 12px 12px 14px;border-radius:16px;border:2px solid var(--red);background:color-mix(in srgb,var(--red) 8%,var(--bg))}
+.ib>div{flex:1 1 calc(100% - 60px);display:flex;flex-direction:column;gap:2px}.ib b{font-size:16px}.ib span{font-size:14px;color:var(--ink);line-height:1.45}.ib .btn{order:3;flex:1 1 100%}.ib-x{flex:none}
 </style></head><body>
 <main id="app" tabindex="-1"></main><div id="live" class="vh" aria-live="polite"></div>
 <script>
@@ -865,12 +867,34 @@ function readView(){rdLoad();const r=rdS(),lv=rdLv(),td=r.days[today()]||0;
   <p class="cite">문장 출처: Tatoeba (tatoeba.org, CC BY 2.0 FR), JMdict 예문 세트 경유. 영어 해석도 Tatoeba.</p></section>`}
 function rdSay(){if(rdq)say(plain(rdq.s))}
 
+
+/* ===== 설치 배너 ===== */
+let BIP=null;const UA=navigator.userAgent||'';
+const isStandalone=()=>matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
+const isIOS=/iPhone|iPad|iPod/.test(UA)||(/Macintosh/.test(UA)&&'ontouchend' in document);
+const isAndroid=/Android/.test(UA);
+const inApp=/KAKAOTALK|NAVER|Instagram|FBAN|FBAV|Line\/|DaumApps|everytimeApp|; wv\)|Claude/i.test(UA);
+addEventListener('beforeinstallprompt',e=>{e.preventDefault();BIP=e;if(view==='home')render()});
+addEventListener('appinstalled',()=>{BIP=null;try{localStorage.setItem('jpInstalled','1')}catch(e){}if(view==='home')render()});
+function installBanner(){
+  if(isStandalone())return '';
+  let hid=0;try{hid=Number(localStorage.getItem('jpInstHide')||0)}catch(e){}
+  if(now()-hid<3*864e5)return '';
+  const x=`<button class="x ib-x" data-act="insthide" aria-label="설치 안내 닫기">✕</button>`;
+  if(BIP)return `<div class="ib" role="region" aria-label="앱 설치"><div><b>📲 앱으로 설치하기</b><span>홈 화면 아이콘으로 바로 열고, 인터넷 없이도 공부할 수 있어요.</span></div><button class="btn pri" data-act="instgo">설치</button>${x}</div>`;
+  if(inApp&&isAndroid)return `<div class="ib" role="region" aria-label="앱 설치"><div><b>📲 크롬에서 열어야 설치돼요</b><span>지금은 다른 앱 안의 브라우저예요.</span></div><button class="btn pri" data-act="instchrome">크롬으로 열기</button>${x}</div>`;
+  if(inApp&&isIOS)return `<div class="ib" role="region" aria-label="앱 설치"><div><b>📲 사파리에서 열어야 설치돼요</b><span>오른쪽 아래(또는 위) ⋯ 메뉴 → <b>Safari로 열기</b> → 공유 버튼 → <b>홈 화면에 추가</b></span></div>${x}</div>`;
+  if(isIOS)return `<div class="ib" role="region" aria-label="앱 설치"><div><b>📲 홈 화면에 추가하기</b><span>아래 공유 버튼 <b>⬆︎</b> → <b>홈 화면에 추가</b> → 추가</span></div>${x}</div>`;
+  if(isAndroid)return `<div class="ib" role="region" aria-label="앱 설치"><div><b>📲 앱으로 설치하기</b><span>크롬 오른쪽 위 <b>⋮</b> → <b>앱 설치</b> 또는 <b>홈 화면에 추가</b></span></div>${x}</div>`;
+  return '';
+}
+
 function home(){
   const n=nextStep(),kn=ALL.filter(learned).length,cur=st.pass.findIndex(p=>p<PASS),ci=cur<0?N:cur;
   const lt=st.lt[1]>=10?Math.round(st.lt[0]/st.lt[1]*100)+'%':'—';
   const route=t=>`<div class="route" aria-label="${t.name}">${S.slice(t.from,t.to+1).map((s,k)=>{const i=t.from+k;return `<span class="dot ${st.pass[i]>=PASS?'done':''} ${i===ci?'now':''}" aria-hidden="true">${i+1}</span>`}).join('<i></i>')}<i></i><span class="dot term ${(st.cp[t.key]||0)>=CPP?'done':''}">終</span></div>`;
   const ct=ci<N?trackOf(ci):null;
-  return `<h1>일본어 공부하자</h1><p class="sub">입문 12역 → N5 5역 → N4 6역 → N3 12역. 역마다 통과 시험, 노선 끝마다 종합 시험. 읽기·듣기·회화 중심, 쓰기는 없음.</p>
+  return `${installBanner()}<h1>일본어 공부하자</h1><p class="sub">입문 12역 → N5 5역 → N4 6역 → N3 12역. 역마다 통과 시험, 노선 끝마다 종합 시험. 읽기·듣기·회화 중심, 쓰기는 없음.</p>
   ${TR.map(t=>`<p class="tname">${t.name}</p>${route(t)}`).join('')}
   <p class="here">${ci<N?`지금 <b>${ci+1}역 <span class="jp">${S[ci].n}</span></b> · ${S[ci].ko}`:'<b>모든 역 통과</b>'}</p>
   <button class="go" data-act="go"><b>${n.kind==='none'?'오늘은 여기까지':'이어서 하기 ▶'}</b><span>${esc(n.label)}</span></button>
@@ -928,7 +952,7 @@ function method(){
 }
 function install(){
   return `<div class="top"><button class="x" data-act="home" aria-label="홈">←</button><span class="tag">설치</span></div>
-  <h1>홈 화면에 추가하기</h1><p class="sub">이 페이지 주소를 홈 화면에 아이콘으로 꽂아 두면 앱처럼 바로 열립니다.</p>
+  <h1>홈 화면에 추가하기</h1><p class="sub">이 페이지 주소를 홈 화면에 아이콘으로 꽂아 두면 앱처럼 바로 열립니다.</p>${isStandalone()?'<p class="fb ok">이미 앱으로 설치되어 실행 중이에요.</p>':BIP?'<button class="go" data-act="instgo"><b>📲 지금 설치하기</b><span>버튼 한 번이면 홈 화면에 앱이 생겨요</span></button>':''}
   <section class="src"><h2>안드로이드 (크롬)</h2><p>이 페이지를 크롬으로 열기 → 오른쪽 위 ⋮ → <b>앱 설치</b>(또는 홈 화면에 추가). 설치하면 오프라인에서도 열립니다.</p></section>
   <section class="src"><h2>아이폰 (사파리)</h2><p>이 페이지를 사파리로 열기 → 아래 공유 버튼 → <b>홈 화면에 추가</b>.</p></section>
   <section class="src"><h2>알아둘 점</h2><p>Claude 앱 안이 아니라 <b>브라우저(크롬·사파리)</b>에서 열어야 메뉴가 보여요. 인터넷이 필요하고, 기록은 그 브라우저에 저장되니 항상 같은 아이콘으로 여세요.</p></section>`;
@@ -1025,6 +1049,9 @@ document.addEventListener('click',e=>{
   else if(a==='flu'){startFluency();render()}
   else if(a==='cap'){const C=[5,8,12];st.cap=C[(C.indexOf(capN())+1)%C.length];save();render()}
   else if(a==='install'){view='install';render()}
+  else if(a==='instgo'){if(BIP){BIP.prompt();BIP.userChoice.finally(()=>{BIP=null;render()})}}
+  else if(a==='insthide'){try{localStorage.setItem('jpInstHide',String(now()))}catch(e){}render()}
+  else if(a==='instchrome'){location.href='intent://'+location.host+location.pathname+'#Intent;scheme=https;package=com.android.chrome;end'}
   else if(a==='read'){view='read';if(RD&&!rdq)rdNext();render();if(rdq&&rdS().lis)rdSay()}
   else if(a==='rdshow'){rdq.show=true;render()}
   else if(a==='rdtr'){rdq.tr=true;render()}
