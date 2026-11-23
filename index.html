@@ -126,6 +126,9 @@ h2 small{font-size:14px;color:var(--mut);font-weight:600}
 .gloss{margin:8px 0;padding:10px 12px;border-radius:12px;background:var(--bg);border:1px solid var(--line);font-size:17px}.btn.sm{min-height:44px;font-size:14px;padding:4px 10px;margin-left:6px}
 .ib{display:flex;flex-wrap:wrap;align-items:flex-start;gap:10px;margin:0 0 12px;padding:12px 12px 12px 14px;border-radius:16px;border:2px solid var(--red);background:color-mix(in srgb,var(--red) 8%,var(--bg))}
 .ib>div{flex:1 1 calc(100% - 60px);display:flex;flex-direction:column;gap:2px}.ib b{font-size:16px}.ib span{font-size:14px;color:var(--ink);line-height:1.45}.ib .btn{order:3;flex:1 1 100%}.ib-x{flex:none}
+.chips-wrap{display:flex;flex-wrap:wrap;gap:8px}.chips-wrap .chip{min-width:52px;font:700 16px 'Noto Sans KR'}.startbtn{margin:0}
+.pic{font-size:64px;line-height:1;margin:6px 0 4px}.fb .pic{font-size:44px}
+.hj{margin-top:10px;font-size:15px;color:var(--ink);font-weight:500;line-height:1.7}.hj b{font-size:18px}
 </style></head><body>
 <main id="app" tabindex="-1"></main><div id="live" class="vh" aria-live="polite"></div>
 <script>
@@ -619,6 +622,8 @@ const MN={};`あ:안테나 꽂힌 사람이 넘어지며 "아!"
 
 const CONFM={};[['シ','ツ'],['ソ','ン'],['ぬ','め'],['わ','れ','ね'],['る','ろ'],['さ','ち'],['は','ほ'],['ク','ケ','タ'],['コ','ユ'],['ウ','ワ','フ'],['い','り'],['こ','に'],['ア','マ'],['チ','テ'],['シ','ン'],['ツ','ソ']].forEach(g=>g.forEach(x=>{CONFM[x]=(CONFM[x]||[]).concat(g.filter(y=>y!==x))}));
 
+const PIC={"1-61":"❤️","1-62":"🏠","1-63":"🍣","1-64":"🐱","1-65":"🐶","1-66":"🐟","1-67":"🌊","1-68":"🌸","1-69":"🚗","1-70":"🚃","1-72":"🍵","1-73":"🥛","1-74":"📷","3-50":"☕","3-51":"🍺","3-52":"🧃","3-53":"🍰","3-54":"🍞","3-55":"🍜","3-56":"🍛","3-57":"🥗","3-58":"📋","3-59":"🍽️","3-60":"🏪","3-61":"🛒","3-62":"🏨","3-63":"🚕","3-64":"🚌","3-65":"🚻","3-66":"🛗","3-67":"🎫","3-68":"💳","3-69":"🛂","3-70":"📱","3-71":"📷","3-72":"🍴","3-73":"🎉","4-27":"🌅","4-28":"🌇","4-30":"📅","6-8":"🧑‍🤝‍🧑","6-9":"👪","6-10":"🇰🇷","6-11":"🗾","6-17":"❓","6-18":"❓","6-21":"🧑‍💼","6-22":"🧑‍🎓","6-23":"🧑‍🏫","6-25":"🧑‍⚕️","7-4":"🚉","7-5":"🏬","7-6":"🏦","7-7":"🏥","7-8":"👮","7-9":"🏞️","7-10":"🚇","7-11":"✈️","7-12":"🚪","7-13":"🚪","7-14":"🪜","7-26":"☂️","7-27":"👜","7-28":"👛","7-29":"🔑","7-30":"📕","7-31":"💧","8-11":"🍚","8-12":"🥤","8-13":"👀","8-14":"🛍️","8-17":"📖","8-18":"⏳","8-20":"⏰","8-21":"😴","8-25":"🚗","8-27":"🚶","8-29":"🪑","8-30":"👂","8-32":"🌅","8-33":"☀️","8-34":"🌙","8-35":"❓","8-36":"🌙","8-39":"🏠","9-4":"🐘","9-5":"🐜","9-6":"💰","9-7":"🏷️","9-8":"😋","9-9":"🌶️","9-10":"🍬","9-11":"🥵","9-12":"🥶","9-13":"👍","9-16":"😄","9-17":"🤯","9-18":"🏃","9-19":"✨","9-20":"🤫","9-21":"💪","9-22":"❤️","9-23":"👎","9-26":"👍","9-27":"🌟","9-28":"😌","12-19":"🔴","12-21":"🗣️","12-30":"✏️","12-33":"🍶","12-38":"🍱","12-40":"🏢","12-41":"🙂","12-42":"🌬️","12-47":"👬","12-49":"💊","12-50":"🗺️","12-52":"⚫","12-53":"💒","12-55":"🧂","12-58":"🪑","12-60":"🧹","12-64":"🧍","12-69":"🗺️","12-79":"⏰","12-85":"🧳","12-86":"🥤","12-87":"📦","12-92":"🌆","12-93":"✈️","12-96":"🥓","12-97":"🛏️","12-100":"🏘️","12-104":"👀","12-105":"👓","12-108":"🌙","12-110":"👫","12-111":"🧳","12-141":"🚿","12-142":"🥄","12-143":"📺","12-144":"👔","12-146":"👔","13-24":"🦶","13-27":"🍭","13-28":"🪷","13-35":"🖼️","13-37":"💴","13-38":"🍽️","13-39":"🚻","13-43":"🛍️","13-44":"🤧","13-45":"🏺","13-47":"🟡","13-48":"☕","13-50":"🍎","13-52":"⚫","13-61":"📰","13-63":"⏱️","13-69":"🥚","13-70":"🎂","13-71":"🎓","13-72":"🟤","13-73":"😩","13-74":"✋","13-76":"🐦","13-77":"🐾","13-79":"😴","13-80":"🚗","13-82":"🌉","13-83":"🏃","13-84":"🌸","13-88":"✉️","13-94":"⏳","13-95":"🛣️","13-97":"🚪","13-98":"❄️","13-102":"🍳","13-114":"👍","13-126":"🏢","13-127":"🥤","13-128":"🧥","13-129":"⚽","13-131":"📝","14-19":"🔵","14-20":"🍁","14-21":"🧼","14-23":"🪑","14-24":"🤕","14-26":"🎤","14-27":"🎬","14-28":"🍪","14-29":"⏰","14-32":"🎵","14-33":"👩","14-34":"👧","14-35":"🛍️","14-36":"✍️","14-41":"🟡","14-43":"📮","14-46":"👄","14-47":"🧦","14-49":"👮","14-51":"🧒","14-53":"🍬","14-57":"📝","14-58":"📖","14-60":"🧺","14-62":"🌤️","14-65":"🍳","14-68":"🍚","14-71":"📚","14-72":"🍗","14-73":"🌻","14-78":"📮","14-79":"🥢","14-85":"⛄","14-87":"🧢","14-88":"🪟","14-89":"🟢","14-96":"⛰️","14-97":"🌆","14-105":"👎","14-111":"👴","14-118":"❓","14-125":"📅","14-126":"👗","14-127":"👖","14-128":"🧶","14-130":"📓","14-131":"🧻","14-132":"🧈","14-133":"🏊","14-134":"🖊️","14-136":"📮","15-20":"🔵","15-22":"🎈","15-26":"🎤","15-27":"🎬","15-30":"👨","15-31":"👦","15-35":"📄","15-36":"🏞️","15-37":"🏫","15-38":"🌳","15-40":"👂","15-41":"🥩","15-42":"👟","15-49":"🍽️","15-50":"📰","15-51":"🚲","15-52":"🚗","15-55":"🧼","15-60":"🍚","15-64":"💡","15-65":"📞","15-73":"☀️","15-80":"📚","15-84":"👁️","15-87":"🤵","15-88":"🧊","15-99":"👵","15-109":"🥤","15-112":"🍽️","15-113":"🏬","15-115":"🔪","15-116":"🛏️","15-117":"📻","16-19":"🔴","16-24":"🌧️","16-25":"🚶","16-28":"🏷️","16-34":"🫃","16-36":"🛁","16-38":"🏊","16-42":"🧍","16-44":"🏫","16-45":"☁️","16-47":"🫖","16-48":"🍚","16-50":"🚶","16-51":"🫙","16-52":"⚪","16-53":"⚪","16-59":"🗄️","16-61":"✉️","16-62":"🌤️","16-63":"🕊️","16-68":"❓","16-70":"🥩","16-79":"👕","16-90":"👂","16-91":"🥬","16-94":"🏤","16-95":"📖","16-107":"🚬","16-118":"🎸","16-120":"👕","16-121":"🔥","16-122":"🐕","16-123":"🔘","16-124":"🖊️","17-39":"🤥","17-40":"💪","17-43":"👥","17-46":"🪞","17-48":"🚒","17-56":"🧑","17-58":"☁️","17-67":"🏝️","17-69":"🧑‍💼","17-74":"💥","17-75":"🌋","17-80":"⛩️","17-91":"♨️","17-93":"🅿️","17-98":"🧤","17-101":"🛣️","17-116":"🚢","17-120":"⭐","17-125":"🚗","17-126":"💍","17-157":"🎹","18-45":"😊","18-50":"💭","18-55":"💭","18-57":"🚂","18-61":"⛪","18-63":"🌿","18-67":"❤️","18-69":"😱","18-83":"📖","18-86":"🌏","18-93":"🌙","18-104":"😳","18-118":"🏞️","18-127":"🤝","18-135":"❄️","18-147":"🛒","19-42":"🎁","19-46":"😠","19-50":"🎆","19-54":"🏖️","19-62":"🧽","19-66":"🏭","19-81":"🏊","19-91":"🏷️","19-95":"🧰","19-138":"🧳","20-36":"🪨","20-50":"😢","20-53":"👘","20-58":"✈️","20-71":"😔","20-75":"📝","20-96":"🛕","20-110":"⚓","20-112":"🐛","20-119":"😄","20-124":"😋","20-126":"🧸","20-129":"🗑️","20-134":"🍇","20-135":"🏍️","20-136":"🪟","20-141":"🏙️","21-33":"👶","21-34":"👶","21-36":"🧵","21-44":"💃","21-55":"🧣","21-64":"🌙","21-73":"🏖️","21-77":"🌀","21-79":"🟫","21-93":"😪","21-95":"🌸","21-96":"🔥","21-102":"🛏️","21-106":"🍲","21-112":"💭","21-129":"🥪","21-130":"🥩","21-131":"🎁","22-36":"💃","22-37":"😲","22-43":"💇","22-46":"❤️","22-49":"🚓","22-50":"🧒","22-52":"🐦","22-54":"🌾","22-72":"💡","22-73":"🦹","22-74":"😢","22-75":"🧸","22-78":"🍃","22-90":"🌲","22-92":"☝️","22-109":"🔥","22-110":"💻","22-111":"🍓","22-113":"🎾","23-34":"🚦","23-50":"🏪","23-61":"🚒","23-171":"🧳","23-176":"👨","23-212":"🍱","23-223":"💊","23-242":"🥃","23-243":"⚙️","23-251":"🚇","24-53":"🌡️","24-66":"⚡","24-72":"⚙️","24-107":"🍽️","24-114":"🗺️","24-159":"🏙️","24-164":"🏙️","24-166":"🐯","24-188":"💨","24-223":"🍲","24-225":"⛺","24-228":"🪢","25-41":"🐟","25-55":"🥫","25-87":"🧊","25-135":"🍵","25-147":"🌱","25-152":"🪡","25-175":"🫘","25-181":"🌱","25-190":"🌙","25-222":"🏪","26-46":"🪨","26-54":"🦟","26-62":"⚔️","26-94":"💨","26-98":"🐒","26-135":"🌍","26-152":"🍲","26-155":"🐭","26-203":"⛷️","26-205":"🧻","26-208":"🚚","26-214":"🥛","26-215":"🚀","27-61":"🙏","27-85":"🌾","27-101":"🚒","27-148":"🗼","27-191":"🏆","28-47":"🐰","28-61":"🍪","28-82":"❤️","28-127":"🌰","28-153":"👏","28-160":"🤫","28-199":"🏕️","28-200":"🎮","28-201":"🧀","28-203":"🎻","28-204":"🍷","29-38":"🧑‍⚕️","29-46":"🐄","29-48":"🛰️","29-51":"👨","29-55":"🏃","29-71":"📘","29-135":"🌤️","29-137":"🥾","29-153":"🚚","29-176":"🌲","29-178":"🧍","29-186":"👍","30-33":"❤️","30-44":"🌌","30-55":"🛋️","30-72":"👎","30-92":"💵","30-105":"🚦","30-108":"🔫","30-146":"😢","30-148":"🗾","30-157":"💥","30-178":"🍚","30-185":"🧑‍🤝‍🧑","30-201":"👗","31-34":"🤝","31-44":"👑","31-46":"🤴","31-58":"🏞️","31-69":"❤️","31-75":"📦","31-95":"👑","31-157":"🎆","31-187":"👖","31-190":"👜","31-196":"🏸","32-33":"😈","32-56":"😱","32-58":"👹","32-60":"🖼️","32-116":"🖼️","32-121":"🐘","32-156":"🦹","32-180":"😄","32-193":"🚣","33-53":"👜","33-69":"🟩","33-75":"🌸","33-76":"🍶","33-96":"☀️","33-139":"🌤️","33-155":"✂️","33-168":"⛵","34-49":"🏊","34-53":"🤷","34-55":"💇","34-60":"🌡️","34-70":"💨","34-72":"🪙","34-87":"👩","34-98":"👨","34-119":"👩","34-149":"🍨","34-151":"🍷","34-155":"🛋️","11-0":"🏪","11-1":"🏪","11-2":"🏪","11-3":"🏪","11-4":"💳","11-5":"🍽️","11-6":"🍽️","11-8":"📋","11-9":"🍔","11-10":"💳","11-11":"💳","11-12":"🚃","11-13":"🚉","11-14":"🎫","11-15":"🚕","11-16":"🏨","11-17":"🛎️","11-18":"🧳","11-19":"📶","11-20":"👕","11-21":"🏷️","11-22":"👕","11-23":"🛍️","11-24":"🛍️","11-25":"🗺️","11-26":"🗺️","11-27":"🚶","11-28":"🤒","11-29":"👛","11-30":"🆘","11-31":"🏥"};
+
 const $=s=>document.querySelector(s);
 const app=$('#app');
 const N=S.length,PASS=85,CPP=90,RCAP=200;
@@ -651,12 +656,27 @@ st.cp=st.cp||{};if(st.final&&!st.cp.intro)st.cp.intro=st.final;
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}};
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const now=()=>Date.now();
-function say(t){if(st.mute||!t)return;try{t=String(t).split('=')[0].replace(/[〜~]/g,'').replace(/→/g,'、').replace(/\//g,'、');const u=new SpeechSynthesisUtterance(t);u.lang='ja-JP';u.rate=st.rate||.85;speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){}}
+const AV=2;
+const norm=t=>String(t).split('=')[0].replace(/[〜~]/g,'').replace(/→/g,'、').replace(/\//g,'、').split('、').filter(x=>!/[가-힣]/.test(x)).join('、').trim();
+let AIDX=null;const APK={},APL={};const AEL=new Audio();AEL.preservesPitch=true;let vflip=0;
+function aLoadIdx(){if(AIDX)return;AIDX={};fetch('au-index.json?v='+AV+'').then(r=>r.json()).then(j=>{AIDX=j;aWarm()}).catch(()=>{})}
+function aPack(p){if(APK[p]||APL[p])return;APL[p]=1;fetch('au-'+p+'.bin?v='+AV).then(r=>{if(!r.ok)throw 0;return r.arrayBuffer()}).then(b=>{APK[p]=b}).catch(()=>{}).finally(()=>{APL[p]=0})}
+function aWarm(){if(!AIDX||!AIDX.packs)return;const ci=curSt();const k=ci<0?'n3':trackOf(ci).key;const L=n=>AIDX.packs.filter(x=>x.startsWith(n+'-')).forEach(aPack);L(k);if(k!=='intro'&&SK()===0&&st.pass[0]<PASS)L('intro')}
+let JV=null,VOK=null;function pickVoice(){try{const all=speechSynthesis.getVoices();if(!all.length)return;const vs=all.filter(v=>/^ja/i.test(v.lang||''));JV=vs.find(v=>/Google/i.test(v.name))||vs.find(v=>/Natural|Online|Nanami|Kyoko|O-ren|Otoya/i.test(v.name))||vs[0]||null;VOK=!!JV}catch(e){}}
+try{pickVoice();speechSynthesis.addEventListener('voiceschanged',()=>{pickVoice();if(view==='home')render()})}catch(e){}
+function ttsSay(t){try{const ss=speechSynthesis,busy=ss.speaking||ss.pending;if(busy)ss.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='ja-JP';if(JV)u.voice=JV;u.rate=st.rate||.85;setTimeout(()=>{try{ss.speak(u)}catch(e){}},busy?80:0)}catch(e){}}
+function say(t){if(st.mute||!t)return;t=norm(t);if(!t)return;try{AEL.pause()}catch(e){}try{if(speechSynthesis.speaking)speechSynthesis.cancel()}catch(e){}
+  const e=AIDX&&AIDX.t&&AIDX.t[t];
+  if(e){const vp=st.voice||'mix';let v=vp==='f'?0:vp==='m'?1:(vflip++%2);if(!e[v])v=0;const [p,o,l]=e[v];const b=APK[p];
+    if(b){const u=URL.createObjectURL(new Blob([b.slice(o,o+l)],{type:'audio/mpeg'}));if(AEL._u)URL.revokeObjectURL(AEL._u);AEL._u=u;AEL.src=u;AEL.playbackRate=(st.rate||.85)+.15;AEL.play().catch(()=>ttsSay(t));return}
+    aPack(p)}
+  ttsSay(t)}
 const learned=c=>!!st.srs[c.id];
 const dueCards=(ex=[])=>{const t=now();return ALL.filter(c=>st.srs[c.id]&&st.srs[c.id].due<=t&&!ex.includes(c)).sort((a,b)=>st.srs[a.id].due-st.srs[b.id].due)};
 const setSrs=(id,b)=>{st.srs[id]={b,due:now()+INT[b],t:now()}};
 const bump=(id,ok)=>{const r=st.srs[id];if(r&&r.t&&now()-r.t>=72e6){st.lt[1]++;if(ok)st.lt[0]++}setSrs(id,ok?Math.min(9,(r?r.b:0)+1):1)};
-const unlocked=i=>i===0||st.pass[i-1]>=PASS;
+const SK=()=>st.start||0;const skipped=i=>i<SK()&&st.pass[i]<PASS;const curSt=()=>st.pass.findIndex((p,i)=>i>=SK()&&p<PASS);
+const unlocked=i=>i<=SK()||st.pass[i-1]>=PASS;
 const today=()=>new Date(now()).toDateString();
 const capN=()=>st.cap||8;
 const revToday=()=>st.rv&&st.rv.d===today()?st.rv.n:0;
@@ -665,8 +685,9 @@ const rcap=()=>Math.min(600,RCAP*gapDays());
 const revOK=()=>revToday()<rcap();
 const lessonsToday=()=>st.day&&st.day.d===today()?st.day.n:0;
 const solidOf=cs=>Math.round(cs.filter(c=>st.srs[c.id]&&st.srs[c.id].b>=5).length/cs.length*100);
-const tCards=t=>S.slice(t.from,t.to+1).flatMap(x=>x.cards);
-const weakest=t=>S.slice(t.from,t.to+1).map((x,i)=>[solidOf(x.cards),t.from+i]).sort((a,b)=>a[0]-b[0])[0];
+const tSt=t=>S.slice(t.from,t.to+1).map((x,k)=>[x,t.from+k]).filter(([x,i])=>!skipped(i));
+const tCards=t=>tSt(t).flatMap(([x])=>x.cards);
+const weakest=t=>tSt(t).map(([x,i])=>[solidOf(x.cards),i]).sort((a,b)=>a[0]-b[0])[0]||[0,t.from];
 const gateOK=t=>solidOf(tCards(t))>=85&&weakest(t)[0]>=80;
 const gateTxt=t=>{const w=weakest(t);return `3일 간격 복습 통과 카드 ${solidOf(tCards(t))}%/85% · 가장 약한 ${w[1]+1}역 ${w[0]}%/80%`};
 const cpN=t=>t.per*(t.to-t.from+1);
@@ -765,7 +786,7 @@ function nextStep(){
   for(const t of TR){
     for(let s=t.from;s<=t.to;s++){
       if(st.fix[s]&&st.fix[s].length)return {kind:'fix',s,label:`${s+1}역 · 틀린 ${st.fix[s].length}장 다시 잡고 재시험`};
-      if(st.pass[s]>=PASS)continue;
+      if(st.pass[s]>=PASS||skipped(s))continue;
       if(due.length>=12&&revOK())return {kind:'review',label:`복습 ${Math.min(15,due.length)}장 — 잊기 직전 카드부터`};
       const li=LES[s].findIndex((_,i)=>!st.done[s+'-'+i]);
       if(due.length>=40&&!revOK())return {kind:'none',label:`오늘 복습 ${rcap()}장 완료. 밀린 복습이 ${due.length}장이라 새 레슨은 쉬어요 — 나눠서 정리해요.`};
@@ -773,6 +794,7 @@ function nextStep(){
       if(li>=0)return {kind:'lesson',s,li,label:`${s+1}역 ${S[s].n} · 레슨 ${li+1}/${LES[s].length} — ${lname(LES[s][li])}`};
       return {kind:'test',s,label:`${s+1}역 통과 시험 — 20문제, ${PASS}점 이상이면 다음 역`};
     }
+    if(!tSt(t).length)continue;
     const fk='cp_'+t.key;
     if(st.fix[fk]&&st.fix[fk].length)return {kind:'fix',s:fk,label:`${t.cp} · 틀린 ${st.fix[fk].length}장 다시 잡고 재시험`};
     if((st.cp[t.key]||0)<CPP){if(gateOK(t))return {kind:'cp',t,label:`${t.cp} — ${cpN(t)}문제, ${CPP}점 통과`};pend=pend||t}
@@ -819,9 +841,9 @@ setInterval(()=>{if(view==='ses'&&!document.hidden&&now()-lastAct<9e4){st.time++
 
 const hrs=s=>(s/3600).toFixed(1);
 const stagePct=i=>Math.round(S[i].cards.filter(learned).length/S[i].cards.length*100);
-function render(){document.body.classList.toggle('mute',!!st.mute);app.innerHTML=view==='home'?home():view==='stage'?stage():view==='method'?method():view==='install'?install():view==='read'?readView():session();window.scrollTo(0,0);a11y()}
+function render(){document.body.classList.toggle('mute',!!st.mute);app.innerHTML=view==='home'?home():view==='stage'?stage():view==='method'?method():view==='install'?install():view==='read'?readView():view==='start'?startView():session();window.scrollTo(0,0);a11y()}
 let _ann=null;
-function a11y(){const L=document.getElementById('live');const q=ses&&view!=='home'&&view!=='stage'&&view!=='method'&&view!=='install'&&view!=='read'?ses.q:null;
+function a11y(){const L=document.getElementById('live');const q=ses&&view!=='home'&&view!=='stage'&&view!=='method'&&view!=='install'&&view!=='read'&&view!=='start'?ses.q:null;
  if(q&&q.ok!==undefined&&_ann!==q){_ann=q;L.textContent=q.ok?'정답':'오답. 정답: '+(q.ans||'')}
  if(_kb){const n=app.querySelector('[data-act=next],[data-act=selfyes],[data-act=inext]');(n||app).focus({preventScroll:true})}}
 let _kb=false;addEventListener('keydown',e=>{if(e.key==='Tab'||e.key==='Enter'||e.key===' ')_kb=true});addEventListener('pointerdown',()=>{_kb=false});
@@ -830,7 +852,7 @@ let _kb=false;addEventListener('keydown',e=>{if(e.key==='Tab'||e.key==='Enter'||
 /* ===== 다독 (extensive reading) — Tatoeba CC BY 2.0 FR ===== */
 let RD=null,rdq=null,rdLoading=false;const CID={};ALL.forEach(c=>CID[c.id]=c);
 const rdS=()=>{st.rd=st.rd||{n:0,ch:0,pos:{},days:{},furi:1,lis:0};return st.rd};
-function rdLv(){const r=rdS();if(r.lv)return r.lv;const ci=st.pass.findIndex(p=>p<PASS);const k=ci<0?'n3':trackOf(ci).key;return k==='intro'?'n5':k}
+function rdLv(){const r=rdS();if(r.lv)return r.lv;const ci=curSt();const k=ci<0?'n3':trackOf(ci).key;return k==='intro'?'n5':k}
 function rdLoad(){if(RD||rdLoading)return;rdLoading=true;fetch('reading.json?v=1').then(r=>r.json()).then(j=>{RD=j;rdLoading=false;rdNext();if(view==='read')render()}).catch(()=>{rdLoading=false;RD={err:1};if(view==='read')render()})}
 const tokIds=s=>s.t.filter(x=>Array.isArray(x)&&x[2]).map(x=>x[2]);
 function rdNext(){const r=rdS(),lv=rdLv(),L=RD&&RD[lv];if(!L||!L.length){rdq=null;return}
@@ -889,19 +911,36 @@ function installBanner(){
   return '';
 }
 
+
+
+const KJ={};ALL.forEach(c=>{if(c.t==='kanji'&&c.j.length===1&&!KJ[c.j])KJ[c.j]=c.k});
+function hanja(c){if(!c||(c.t!=='word'&&c.t!=='phrase'))return '';const ks=[...c.j].filter(ch=>/[一-鿿]/.test(ch));if(!ks.length)return '';const kn=ks.filter(ch=>KJ[ch]);if(!kn.length)return '';
+  const snd=ks.length>=2&&kn.length===ks.length?ks.map(ch=>KJ[ch].trim().slice(-1)).join(''):'';
+  return `<div class="hj">${kn.map(ch=>`<span><b class="jp" lang="ja">${ch}</b> ${esc(KJ[ch])}</span>`).join(' · ')}${snd?` → 한자음 <b>${snd}</b>`:''}</div>`}
+const pic=c=>c&&PIC[c.id]?`<div class="pic" aria-hidden="true">${PIC[c.id]}</div>`:'';
+
+function startView(){const cur=SK();
+  const quick=[[0,'처음부터','히라가나부터 차근차근'],[2,'가타카나부터','히라가나는 이미 읽을 수 있어요'],[4,'숫자·인사·문장부터','가나는 다 읽을 수 있어요'],[12,'JLPT N5부터','입문 내용(가나·기초 문형)은 알아요'],[17,'JLPT N4부터','N5 수준은 돼요'],[23,'JLPT N3부터','N4 수준은 돼요']];
+  return `<div class="top"><button class="x" data-act="home" aria-label="홈">←</button><span class="tag">시작 위치</span></div>
+  <h1>어디서부터 할까요?</h1><p class="sub">고른 역부터 바로 시작해요. 앞의 역은 건너뛴 걸로 치고, 언제든 들어가서 공부하거나 '건너뛰기 시험'으로 통과 처리할 수 있어요. 진도 기록은 지워지지 않아요.</p>
+  ${quick.map(([i,a,b])=>`<button class="stage ${i===cur?'done':''}" data-start="${i}"><div class="no">${i+1}</div><div><h3>${a}</h3><p>${b} — ${i+1}역 <span class="jp">${S[i].n}</span>부터</p></div></button>`).join('')}
+  <h2>역 직접 고르기</h2>
+  <div class="chips-wrap">${S.map((x,i)=>`<button class="chip ${i===cur?'on':''}" data-start="${i}" aria-pressed="${i===cur}" aria-label="${i+1}역 ${x.ko}">${i+1}</button>`).join('')}</div>
+  <p class="sub" style="margin-top:10px;font-size:14px">${S.map((x,i)=>`${i+1} ${x.ko}`).join(' · ')}</p>`}
+
 function home(){
-  const n=nextStep(),kn=ALL.filter(learned).length,cur=st.pass.findIndex(p=>p<PASS),ci=cur<0?N:cur;
+  const n=nextStep(),kn=ALL.filter(learned).length,cur=curSt(),ci=cur<0?N:cur;
   const lt=st.lt[1]>=10?Math.round(st.lt[0]/st.lt[1]*100)+'%':'—';
   const route=t=>`<div class="route" aria-label="${t.name}">${S.slice(t.from,t.to+1).map((s,k)=>{const i=t.from+k;return `<span class="dot ${st.pass[i]>=PASS?'done':''} ${i===ci?'now':''}" aria-hidden="true">${i+1}</span>`}).join('<i></i>')}<i></i><span class="dot term ${(st.cp[t.key]||0)>=CPP?'done':''}">終</span></div>`;
   const ct=ci<N?trackOf(ci):null;
   return `${installBanner()}<h1>일본어 공부하자</h1><p class="sub">입문 12역 → N5 5역 → N4 6역 → N3 12역. 역마다 통과 시험, 노선 끝마다 종합 시험. 읽기·듣기·회화 중심, 쓰기는 없음.</p>
   ${TR.map(t=>`<p class="tname">${t.name}</p>${route(t)}`).join('')}
-  <p class="here">${ci<N?`지금 <b>${ci+1}역 <span class="jp">${S[ci].n}</span></b> · ${S[ci].ko}`:'<b>모든 역 통과</b>'}</p>
+  ${VOK===false&&!st.mute?`<div class="ib" role="note"><div><b>🔈 이 기기에 일본어 음성이 없어요</b><span>앱에 넣은 음성 파일은 그대로 나오지만, 일부 문장(다독 등)은 소리가 안 날 수 있어요. 설정에서 <b>텍스트 음성 변환</b>을 검색 → 기본 엔진을 <b>Google 음성 인식 및 합성</b>으로 바꾸고 → 일본어 음성 데이터를 설치하세요.</span></div></div>`:''}<p class="startrow"><button class="btn sm startbtn" data-act="startpick">📍 시작 위치 바꾸기</button></p><p class="here">${ci<N?`지금 <b>${ci+1}역 <span class="jp">${S[ci].n}</span></b> · ${S[ci].ko}`:'<b>모든 역 통과</b>'}</p>
   <button class="go" data-act="go"><b>${n.kind==='none'?'오늘은 여기까지':'이어서 하기 ▶'}</b><span>${esc(n.label)}</span></button>
   <div class="stats"><div><b>${hrs(st.time)}h</b><small>공부 시간</small></div><div><b>${kn}</b><small>익힌 카드 / ${ALL.length}</small></div><div><b>${dueCards().length}</b><small>복습 대기 · 오늘 새 레슨 ${lessonsToday()}/${capN()}</small></div><div><b>${lt}</b><small>하루 뒤 기억률 (목표 80%+)</small></div></div>
   <button class="mt ${st.mute?'on':''}" data-act="mute">${st.mute?'🔇 소리 없이 모드 켜짐 — 듣기 문제 대신 읽기 문제':'🔈 소리 켜짐 · 차 안이나 조용한 곳이면 눌러서 소리 없이 모드'}</button>
   ${TR.filter(t=>(st.cp[t.key]||0)>=CPP).map(t=>`<div class="cert"><b>${t.cp} 합격 — ${st.cp[t.key]}점</b></div>`).join('')}
-  <div class="links ctl"><button class="btn" data-act="cap">📚 새 레슨 ${capN()}개/일</button><button class="btn" data-act="rate">🔊 속도 ${(st.rate||.85).toFixed(2)}×</button>${fluPool().length>=20?`<button class="btn" data-act="flu">⚡ 스피드 복습</button>`:''}</div>
+  <div class="links ctl"><button class="btn" data-act="cap">📚 새 레슨 ${capN()}개/일</button><button class="btn" data-act="rate">🔊 속도 ${(st.rate||.85).toFixed(2)}×</button><button class="btn" data-act="voice">🗣 ${({mix:'남녀 번갈아',f:'여자 목소리',m:'남자 목소리'})[st.voice||'mix']}</button>${fluPool().length>=20?`<button class="btn" data-act="flu">⚡ 스피드 복습</button>`:''}</div>
   <button class="mt" data-act="read">📖 다독 — 배운 단어로 된 실제 문장 읽기·듣기${st.rd&&st.rd.days&&st.rd.days[today()]?` (오늘 ${st.rd.days[today()]}문장)`:''}</button>
   <div class="links"><button class="btn" data-act="method">공부법과 논문 근거</button><button class="btn" data-act="install">홈 화면에 추가하기</button></div>
   ${TR.map(t=>`<h2>${t.name} <small>(${t.from+1}~${t.to+1}역)</small></h2>${t.key!=='intro'&&unlocked(t.from)?`<button class="mt" data-mock="${t.key}">📝 ${t.key.toUpperCase()} 실전 모의고사 40문제 — 문자·어휘·문법·독해·청해, JLPT 방식 환산 점수${st.mock&&st.mock[t.key]?` (최고 ${st.mock[t.key]}%)`:''}</button>`:''}
@@ -947,7 +986,7 @@ function method(){
   <section class="src"><h2>자동화 (유창성 개발)</h2><p>느리고 의식적인 처리가 연습을 통해 빠르고 자동적인 처리로 바뀝니다. 실제 회화·청해는 속도 싸움이라, 아는 것을 빨리 꺼내는 연습이 따로 필요합니다.</p><p class="use"><b>앱에서:</b> 이미 익힌 카드만 20문제를 빠르게. 응답 시간을 재고, 2.5초 이내·정답 95%를 목표로 합니다. 하루 새 레슨을 다 하면 자동으로 권합니다. 말하기 속도도 0.7~1.15배로 올려 가며 들을 수 있습니다.</p><p class="cite"><a href="https://doi.org/10.1002/9781405198431.wbeal0067" target="_blank" rel="noopener">DeKeyser & Criado (2013); Suzuki, Maie & Hui (2025), Language Teaching</a></p></section>
   <section class="src"><h2>시험 형식 그대로 연습 (전이 적합 처리)</h2><p>배울 때의 처리 방식이 시험에서 요구되는 처리 방식과 같을수록 성적이 잘 나온다는 원리입니다.</p><p class="use"><b>앱에서:</b> JLPT 문제 유형을 그대로 넣었습니다 — 漢字読み·表記·文脈規定(빈칸)·言い換え(비슷한 말)·文の組み立て(문장 조립)·読解·課題/ポイント理解(대화 청해)·即時応答(3지선다). 노선마다 40문제 모의고사는 JLPT와 같은 방식으로 환산 점수와 과목별 기준점을 보여 줍니다.</p><p class="cite">Morris, Bransford & Franks (1977), Journal of Verbal Learning and Verbal Behavior</p></section>
   <section class="src"><h2>한국어 한자음 활용</h2><p>N5 노선의 한자는 한국 훈음(日 = 날 일)으로 익힙니다. 한국 한자음과 일본 음독은 대응하는 경우가 많아서(학교 → がっこう) 한국어 화자에게 큰 이점입니다. 한자 카드와 '한국 한자음 → 일본 음독' 문형에서 연습합니다.</p></section>
-  <section class="src"><h2>데이터 출처</h2><p>JLPT 단어 목록: open-anki-jlpt-decks (Jamie Sinclair, MIT 라이선스, Jonathan Waller의 JLPT 목록 기반). 한자 읽기: kanji-data (David Gouveia, MIT 라이선스). 한국어 뜻·훈음은 직접 번역했습니다. JLPT는 공식 단어 목록을 공개하지 않으므로 범위는 추정치입니다.</p></section>
+  <section class="src"><h2>데이터 출처</h2><p>JLPT 단어 목록: open-anki-jlpt-decks (Jamie Sinclair, MIT 라이선스, Jonathan Waller의 JLPT 목록 기반). 한자 읽기: kanji-data (David Gouveia, MIT 라이선스). 한국어 뜻·훈음은 직접 번역했습니다. 음성: Kokoro-82M 오픈소스 AI 음성(Apache 2.0, 여성 jf_alpha·남성 jm_kumo)으로 미리 만든 파일. 파일이 없는 문장(다독 등)은 기기 음성으로 읽습니다. JLPT는 공식 단어 목록을 공개하지 않으므로 범위는 추정치입니다.</p></section>
   <section class="src"><h2>한계</h2><p>원리마다 근거는 탄탄하지만, 이 앱 자체를 사람 대상 실험으로 검증한 것은 아닙니다. 홈의 '하루 뒤 기억률'이 80% 이상이면 제대로 작동 중, 그보다 낮으면 하루 공부량을 줄이세요. 한자와 빠른 실제 회화 듣기는 이 과정 범위 밖입니다.</p></section>`;
 }
 function install(){
@@ -966,7 +1005,7 @@ function session(){
     const sitBox=c.t==='sit'?`<div class="ctx">${esc(c.ctx)}</div>${c.h?`<div class="heard jp">「${esc(c.h)}」</div><div class="r">${esc(c.hk)}</div><div class="arrow">↓ 이렇게 말해요</div>`:'<div class="arrow">↓ 이렇게 말해요</div>'}`:'';
     return `${top(s.ii/(s.intro.length*3))}
     <div class="flash">${c.t==='kanji'?'':`<button class="say" data-say="${esc(c.t==='sit'&&c.h?c.h+'。'+c.j:(c.sy||c.j))}" aria-label="다시 듣기">🔊</button>`}${sitBox}
-    <div class="${c.t==='kana'||c.t==='kanji'?'big':'mid'} jp">${esc(c.j)}</div>${c.r&&c.r!==c.j?`<div class="r ${c.lv||c.t==='kanji'?'jp':''}">${esc(c.r)}</div>`:''}<div class="k">${esc(c.k)}</div>${c.m?`<div class="mn">${c.t==='kanji'?'예) ':'💡 '}${esc(c.m)}</div>`:''}
+    ${pic(c)}<div class="${c.t==='kana'||c.t==='kanji'?'big':'mid'} jp">${esc(c.j)}</div>${c.r&&c.r!==c.j?`<div class="r ${c.lv||c.t==='kanji'?'jp':''}">${esc(c.r)}</div>`:''}<div class="k">${esc(c.k)}</div>${c.m?`<div class="mn">${c.t==='kanji'?'예) ':'💡 '}${esc(c.m)}</div>`:''}${hanja(c)}
     ${c.ex.length?`<div class="ex">${c.ex.map(e=>`<div><span class="jp">${esc(e.te?e.a+' → '+e.b:e.a)}${e.te?'':`<br><small>${esc(e.b)}</small>`}</span><button data-say="${esc(e.te?e.a+'、'+e.b:e.a)}" aria-label="듣기">🔊</button></div>`).join('')}</div>`:''}
     <div class="hint">${c.t==='kanji'?'훈음과 음독을 소리 내어 두 번 읽기':st.mute?'보고 입 모양으로 두 번 따라 하기':'🔊 듣고 소리 내어 두 번 따라 말하기'}</div></div>
     <div class="row"><button class="btn pri" data-act="inext">${s.ii<s.intro.length-1?`다음 (${s.ii+1}/${s.intro.length})`:'연습 시작 ▶'}</button></div>`;
@@ -992,7 +1031,7 @@ function session(){
       :`${(q.pj||q.ph)&&(q.ph||q.say)?`<button class="say" data-say="${esc(q.ph||q.say)}" aria-label="듣기">🔊</button>`:''}<div class="${q.passage?'passage':q.big?'big':q.pj?'mid':'ko'} ${q.pj?'jp':''}">${esc(q.p)}</div>${q.q2?`<div class="q2 jp">${esc(q.q2)}</div>`:''}${q.sub?`<div class="r">${esc(q.sub)}</div>`:''}${heard}`;
     body=`<div class="flash" style="min-height:200px">${prompt}<div class="hint">${q.hint}</div></div>
     <div class="opts">${q.opts.map((o,i)=>{let cls='';if(ans){if(o===q.ans)cls='right';else if(i===q.picked)cls='wrong'}return `<button class="opt ${q.oj?'jp':''} ${cls}" data-opt="${i}" ${ans?'disabled':''}>${esc(o)}${cls==='right'?'<span class="mk">✓ 정답</span>':cls==='wrong'?'<span class="mk">✗ 내 답</span>':''}</button>`}).join('')}</div>
-    ${ans&&q.dt&&s.kind==='flu'?`<div class="fb ${q.dt<=2.5?'ok':''}">${q.dt.toFixed(1)}초 ${q.dt<=2.5?'— 자동화 수준':'— 목표 2.5초 이내'}</div>`:''}${ans&&q.tr?`<div class="tr"><b>해석</b> ${esc(q.tr)}</div>`:''}${ans?`${!q.ok&&q.c.t!=='gram'&&!q.tr?`<div class="fb no"><span class="jp">${esc(q.c.j)}</span> = ${q.c.r&&q.c.r!==q.c.j?esc(q.c.r)+' · ':''}${esc(q.c.k)}${q.c.m?`<div class="mn">💡 ${esc(q.c.m)}</div>`:''}</div>`:''}<div class="row"><button class="btn pri" data-act="next">다음</button></div>`:''}`;
+    ${ans&&q.dt&&s.kind==='flu'?`<div class="fb ${q.dt<=2.5?'ok':''}">${q.dt.toFixed(1)}초 ${q.dt<=2.5?'— 자동화 수준':'— 목표 2.5초 이내'}</div>`:''}${ans&&q.tr?`<div class="tr"><b>해석</b> ${esc(q.tr)}</div>`:''}${ans?`${!q.ok&&q.c.t!=='gram'&&!q.tr?`<div class="fb no">${pic(q.c)}<span class="jp">${esc(q.c.j)}</span> = ${q.c.r&&q.c.r!==q.c.j?esc(q.c.r)+' · ':''}${esc(q.c.k)}${q.c.m?`<div class="mn">💡 ${esc(q.c.m)}</div>`:''}${hanja(q.c)}</div>`:''}<div class="row"><button class="btn pri" data-act="next">다음</button></div>`:''}`;
   }
   return top(pr)+body;
 }
@@ -1040,6 +1079,7 @@ document.addEventListener('click',e=>{
   if(d.tok!==undefined){rdq.w=rdq.w===Number(d.tok)?null:Number(d.tok);const x=rdq.s.t[Number(d.tok)];say(x[1]||x[0]);render();return}
   if(d.rdlv!==undefined){rdS().lv=d.rdlv;save();rdNext();render();return}
   if(d.rdsay!==undefined){rdSay();return}
+  if(d.start!==undefined){st.start=Number(d.start);save();view='home';render();aWarm();return}
   if(d.rdadd!==undefined){setSrs(d.rdadd,0);save();render();return}
   const a=d.act;
   if(a==='go')go();
@@ -1047,11 +1087,13 @@ document.addEventListener('click',e=>{
   else if(a==='method'){view='method';render()}
   else if(a==='rate'){const R=[.7,.85,1,1.15];st.rate=R[(R.indexOf(st.rate||.85)+1)%R.length];save();render();say('こんにちは、よろしくお願いします')}
   else if(a==='flu'){startFluency();render()}
+  else if(a==='voice'){const V=['mix','f','m'];st.voice=V[(V.indexOf(st.voice||'mix')+1)%3];save();render();vflip=st.voice==='m'?1:0;say('こんにちは、よろしくお願いします')}
   else if(a==='cap'){const C=[5,8,12];st.cap=C[(C.indexOf(capN())+1)%C.length];save();render()}
   else if(a==='install'){view='install';render()}
   else if(a==='instgo'){if(BIP){BIP.prompt();BIP.userChoice.finally(()=>{BIP=null;render()})}}
   else if(a==='insthide'){try{localStorage.setItem('jpInstHide',String(now()))}catch(e){}render()}
   else if(a==='instchrome'){location.href='intent://'+location.host+location.pathname+'#Intent;scheme=https;package=com.android.chrome;end'}
+  else if(a==='startpick'){view='start';render()}
   else if(a==='read'){view='read';if(RD&&!rdq)rdNext();render();if(rdq&&rdS().lis)rdSay()}
   else if(a==='rdshow'){rdq.show=true;render()}
   else if(a==='rdtr'){rdq.tr=true;render()}
@@ -1072,8 +1114,8 @@ document.addEventListener('click',e=>{
 });
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&view==='home')render()});
 if('serviceWorker' in navigator&&window.isSecureContext&&/^https?:/.test(location.protocol)){try{navigator.serviceWorker.register('sw.js').catch(()=>{})}catch(e){}}
-window.__jp={get st(){return st},get ses(){return ses},get view(){return view},nextStep,LES,ALL,PASS,CPP,N,mkQ};
-render();
+window.__jp={get aud(){return {idx:AIDX&&AIDX.t?Object.keys(AIDX.t).length:0,packs:Object.keys(APK),src:AEL.src,paused:AEL.paused,rate:AEL.playbackRate}},get st(){return st},get ses(){return ses},get view(){return view},nextStep,LES,ALL,PASS,CPP,N,mkQ};
+aLoadIdx();render();
 
 }
 </script>
