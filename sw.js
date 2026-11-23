@@ -1,5 +1,5 @@
-const C='jp20-v9';
-const CORE=['./','./index.html','./manifest.json','./icon-192.png','./icon-512.png','./icon-maskable.png'];
+const C='jp20-v10';
+const CORE=['./','./index.html','./manifest.json','./icon-192.png','./icon-512.png','./icon-maskable.png','./reading.json?v=1'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(C).then(c=>c.addAll(CORE)));self.skipWaiting()});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==C).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});
 self.addEventListener('fetch',e=>{
