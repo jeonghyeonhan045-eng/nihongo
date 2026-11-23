@@ -13,7 +13,7 @@ IDEA: 일본 전철 노선도 — 12개 역, 최종 시험 = 종착역(終)
 PICTURE: 진행률이 차오르는 노선도 + 큼직한 카드 한 장
 COLOUR / TYPE: 흰 바탕, 먹색, 히노마루 빨강 하나 / Zen Kaku Gothic New + Noto Sans KR
 LAYOUT: 한 열, 폰 우선, 버튼은 엄지 닿는 아래쪽 */
-:root{color-scheme:light dark;--bg:light-dark(#fff,#111214);--ink:light-dark(#16171a,#ececec);--mut:light-dark(#6b6f76,#9aa0a8);--line:light-dark(#e4e4e7,#2b2d31);--card:light-dark(#f5f5f6,#1c1d21);--red:light-dark(#c8102e,#e2364c);--ok:light-dark(#1f7a4d,#5fd39a);--bad:light-dark(#b3261e,#ff8a80)}
+:root{color-scheme:light dark;--bg:light-dark(#fff,#111214);--ink:light-dark(#16171a,#ececec);--mut:light-dark(#6b6f76,#9aa0a8);--line:light-dark(#e4e4e7,#2b2d31);--card:light-dark(#f5f5f6,#1c1d21);--red:light-dark(#c8102e,#d02a42);--redt:light-dark(#c8102e,#ff6678);--ok:light-dark(#1f7a4d,#5fd39a);--bad:light-dark(#b3261e,#ff8a80)}
 :root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
 *{box-sizing:border-box;min-width:0}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 'Noto Sans KR',system-ui,sans-serif;overflow-x:clip}
@@ -23,7 +23,7 @@ h1{font:900 clamp(30px,7vw,44px)/1.05 'Zen Kaku Gothic New','Noto Sans KR';margi
 h2{font-size:21px;margin:28px 0 8px}
 .sub{color:var(--mut);margin:0 0 6px}
 button{font:inherit;color:inherit;cursor:pointer}
-button:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+button:focus-visible,a:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--red);outline-offset:2px}
 .map{position:relative;display:flex;justify-content:space-between;margin:22px 0 4px}
 .rail{position:absolute;left:10%;right:10%;top:20px;height:8px;background:var(--line);border-radius:4px;overflow:hidden}
 .rail i{display:block;height:100%;background:var(--red);transition:width .6s}
@@ -35,14 +35,14 @@ button:focus-visible{outline:3px solid var(--red);outline-offset:2px}
 .st small{font-size:12px;color:var(--mut);text-align:center;line-height:1.2}
 .go{display:block;width:100%;margin:20px 0 0;padding:18px 20px;border:0;border-radius:20px;background:var(--red);color:#fff;text-align:left}
 .go b{display:block;font-size:24px;font-weight:800}
-.go span{display:block;font-size:15px;opacity:.92;margin-top:2px}
+.go span{display:block;font-size:15px;margin-top:2px}
 .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:14px}
 .stats div{background:var(--card);border-radius:14px;padding:10px 12px}
 .stats b{display:block;font-size:22px;font-weight:800;white-space:nowrap}.stats small{color:var(--mut);font-size:13px}
 .stage{display:grid;grid-template-columns:48px minmax(0,1fr);gap:14px;padding:14px 0;border:0;border-top:1px solid var(--line);background:none;width:100%;text-align:left}
 .stage .no{width:48px;height:48px;border-radius:50%;border:4px solid var(--red);display:grid;place-items:center;font-weight:900;font-size:19px}
 .stage.done .no{background:var(--red);color:#fff}
-.stage h3{margin:0;font-size:18px}.stage h3 .jp{color:var(--red);margin-right:6px}
+.stage h3{margin:0;font-size:18px}.stage h3 .jp{color:var(--redt);margin-right:6px}
 .stage p{margin:3px 0 6px;color:var(--mut);font-size:15px}
 .meta{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--mut)}.meta b{color:var(--ink)}
 .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}.bar i{display:block;height:100%;background:var(--red);transition:width .3s}
@@ -104,10 +104,10 @@ h2 small{font-size:14px;color:var(--mut);font-weight:600}
 .here{margin:8px 0 0;font-size:16px}
 .links{display:flex;gap:10px;margin-top:14px}.links.ctl{flex-wrap:wrap}.links.ctl .btn{flex:1 1 30%;font-size:13px;line-height:1.25;padding:6px;white-space:normal}
 .links .btn{flex:1;min-height:48px;font-size:15px;padding:0 10px}
-.stage.lock{opacity:.55}.stage.lock .no{border-color:var(--line);font-size:16px}
-.src{border-top:1px solid var(--line);padding:14px 0}.src h3{margin:0 0 4px;font-size:18px}.src p{margin:4px 0;font-size:15px}.src .use{color:var(--ink)}.src .cite{font-size:13px}.src a{color:var(--red)}.src .cite a{display:inline-block;padding:10px 0}
+.stage.lock,.stage.lock h3,.stage.lock h3 .jp,.stage.lock p,.stage.lock .meta,.stage.lock .meta b{color:var(--mut)}.stage.lock .no{border-color:var(--line)}.stage.lock .no{border-color:var(--line);font-size:16px}
+.src{border-top:1px solid var(--line);padding:14px 0}.src h2,.src h3{margin:0 0 4px;font-size:18px}.src p{margin:4px 0;font-size:15px}.src .use{color:var(--ink)}.src .cite{font-size:13px}.src a{color:var(--redt)}.src .cite a{display:inline-block;padding:10px 0}
 .ctx{font-size:16px;font-weight:700;margin-bottom:8px;text-wrap:balance}
-.heard{font:700 clamp(20px,5.5vw,28px)/1.35 'Zen Kaku Gothic New';margin-top:8px;color:var(--red);text-wrap:balance}
+.heard{font:700 clamp(20px,5.5vw,28px)/1.35 'Zen Kaku Gothic New';margin-top:8px;color:var(--redt);text-wrap:balance}
 .arrow{font-size:14px;color:var(--mut);margin:10px 0 4px}
 .prenote{background:var(--card);border-radius:12px;padding:10px 14px;font-size:14px;margin:0 0 10px}
 .cert span{color:var(--mut)}
@@ -116,8 +116,11 @@ h2 small{font-size:14px;color:var(--mut);font-weight:600}
 .cert{border:3px solid var(--red);border-radius:20px;padding:24px;margin-top:10px}
 @media(prefers-reduced-motion:reduce){.rail i,.bar i{transition:none}}
 @media(max-width:440px){.dot{font-size:9px;border-width:2px}.dot.now{transform:none}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.st b{width:40px;height:40px;font-size:16px;border-width:4px}.rail{top:16px}.st small{display:none}.st span{font-size:12px}}
+.vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.opt .mk{font-weight:800;margin-left:8px;font-size:15px}.opt.right .mk{color:var(--ok)}.opt.wrong .mk{color:var(--bad)}
+#app:focus{outline:none}
 </style></head><body>
-<main id="app"></main>
+<main id="app" tabindex="-1"></main><div id="live" class="vh" aria-live="polite"></div>
 <script>
 {
 const toK=s=>s.replace(/[ぁ-ゖ]/g,c=>String.fromCharCode(c.charCodeAt(0)+96));
@@ -809,7 +812,12 @@ setInterval(()=>{if(view==='ses'&&!document.hidden&&now()-lastAct<9e4){st.time++
 
 const hrs=s=>(s/3600).toFixed(1);
 const stagePct=i=>Math.round(S[i].cards.filter(learned).length/S[i].cards.length*100);
-function render(){document.body.classList.toggle('mute',!!st.mute);app.innerHTML=view==='home'?home():view==='stage'?stage():view==='method'?method():view==='install'?install():session();window.scrollTo(0,0)}
+function render(){document.body.classList.toggle('mute',!!st.mute);app.innerHTML=view==='home'?home():view==='stage'?stage():view==='method'?method():view==='install'?install():session();window.scrollTo(0,0);a11y()}
+let _ann=null;
+function a11y(){const L=document.getElementById('live');const q=ses&&view!=='home'&&view!=='stage'&&view!=='method'&&view!=='install'?ses.q:null;
+ if(q&&q.ok!==undefined&&_ann!==q){_ann=q;L.textContent=q.ok?'정답':'오답. 정답: '+(q.ans||'')}
+ if(_kb){const n=app.querySelector('[data-act=next],[data-act=selfyes],[data-act=inext]');(n||app).focus({preventScroll:true})}}
+let _kb=false;addEventListener('keydown',e=>{if(e.key==='Tab'||e.key==='Enter'||e.key===' ')_kb=true});addEventListener('pointerdown',()=>{_kb=false});
 
 function home(){
   const n=nextStep(),kn=ALL.filter(learned).length,cur=st.pass.findIndex(p=>p<PASS),ci=cur<0?N:cur;
@@ -835,7 +843,7 @@ function home(){
 function stage(){
   const s=S[vs],ls=LES[vs],all=ls.every((_,j)=>st.done[vs+'-'+j]),lk=!unlocked(vs);
   return `<div class="top"><button class="x" data-act="home" aria-label="홈">←</button><span class="tag">${vs+1}역 / ${N} · ${trackOf(vs).name}</span></div>
-  <h1><span class="jp" style="color:var(--red)">${s.n}</span> ${s.ko}</h1><p class="sub">목표: ${s.goal}</p>
+  <h1><span class="jp" style="color:var(--redt)">${s.n}</span> ${s.ko}</h1><p class="sub">목표: ${s.goal}</p>
   ${lk?`<div class="how">🔒 ${vs}역 통과 시험(${PASS}점)을 통과하면 열립니다. 완전 학습: 앞 단계를 확실히 한 뒤 넘어가야 뒤가 무너지지 않아요.</div>`:''}
   <h2>레슨 ${ls.length}개</h2>
   ${ls.map((l,j)=>`<button class="lesson ${st.done[vs+'-'+j]?'done':''}" data-les="${j}" ${lk?'disabled':''}><i>${st.done[vs+'-'+j]?'✓':j+1}</i><span class="${l[0].t==='kana'?'jp':''}">${esc(lname(l))}</span><small>${l.length}장</small></button>`).join('')}
@@ -861,21 +869,21 @@ const SRC=[
 function method(){
   return `<div class="top"><button class="x" data-act="home" aria-label="홈">←</button><span class="tag">공부법</span></div>
   <h1>이 앱의 공부법과 근거</h1><p class="sub">원리마다 무엇인지, 앱에서 어떻게 쓰는지, 근거 논문을 적었습니다.</p>
-  ${SRC.map(([t,w,h,c,u],i)=>`<section class="src"><h3>${i+1}. ${t}</h3><p>${w}</p><p class="use"><b>앱에서:</b> ${h}</p><p class="cite"><a href="${u}" target="_blank" rel="noopener">${c}</a></p></section>`).join('')}
-  <section class="src"><h3>하루 새 레슨 ${capN()}개 상한 · 최종 시험 조건</h3><p>가상 학습자 시뮬레이션에서 몰아서 하면 시험은 통과해도 1주 뒤 기억이 크게 떨어졌습니다. 그래서 새 레슨은 하루 ${capN()}개까지, 최종 시험은 3일 간격 복습을 통과한 카드가 전체 85%, 모든 역에서 80% 이상일 때 열립니다.</p></section>
-  <section class="src"><h3>4가지 영역의 균형 (Nation의 Four Strands)</h3><p>좋은 언어 과정은 의미 중심 입력(읽기·듣기), 의미 중심 출력(말하기), 언어 형태 학습(단어·문법), 유창성 개발을 고르게 담아야 한다는 원칙입니다.</p><p class="use"><b>앱에서:</b> 입력 = 독해·청해·상황 대응, 출력 = 소리 내어 말하기·직접 떠올리기, 형태 학습 = 카드·문형, 유창성 = ⚡ 스피드 복습.</p><p class="cite"><a href="https://core.ac.uk/download/357330216.pdf" target="_blank" rel="noopener">Nation (2007), Innovation in Language Learning and Teaching</a></p></section>
-  <section class="src"><h3>자동화 (유창성 개발)</h3><p>느리고 의식적인 처리가 연습을 통해 빠르고 자동적인 처리로 바뀝니다. 실제 회화·청해는 속도 싸움이라, 아는 것을 빨리 꺼내는 연습이 따로 필요합니다.</p><p class="use"><b>앱에서:</b> 이미 익힌 카드만 20문제를 빠르게. 응답 시간을 재고, 2.5초 이내·정답 95%를 목표로 합니다. 하루 새 레슨을 다 하면 자동으로 권합니다. 말하기 속도도 0.7~1.15배로 올려 가며 들을 수 있습니다.</p><p class="cite"><a href="https://doi.org/10.1002/9781405198431.wbeal0067" target="_blank" rel="noopener">DeKeyser & Criado (2013); Suzuki, Maie & Hui (2025), Language Teaching</a></p></section>
-  <section class="src"><h3>시험 형식 그대로 연습 (전이 적합 처리)</h3><p>배울 때의 처리 방식이 시험에서 요구되는 처리 방식과 같을수록 성적이 잘 나온다는 원리입니다.</p><p class="use"><b>앱에서:</b> JLPT 문제 유형을 그대로 넣었습니다 — 漢字読み·表記·文脈規定(빈칸)·言い換え(비슷한 말)·文の組み立て(문장 조립)·読解·課題/ポイント理解(대화 청해)·即時応答(3지선다). 노선마다 40문제 모의고사는 JLPT와 같은 방식으로 환산 점수와 과목별 기준점을 보여 줍니다.</p><p class="cite">Morris, Bransford & Franks (1977), Journal of Verbal Learning and Verbal Behavior</p></section>
-  <section class="src"><h3>한국어 한자음 활용</h3><p>N5 노선의 한자는 한국 훈음(日 = 날 일)으로 익힙니다. 한국 한자음과 일본 음독은 대응하는 경우가 많아서(학교 → がっこう) 한국어 화자에게 큰 이점입니다. 한자 카드와 '한국 한자음 → 일본 음독' 문형에서 연습합니다.</p></section>
-  <section class="src"><h3>데이터 출처</h3><p>JLPT 단어 목록: open-anki-jlpt-decks (Jamie Sinclair, MIT 라이선스, Jonathan Waller의 JLPT 목록 기반). 한자 읽기: kanji-data (David Gouveia, MIT 라이선스). 한국어 뜻·훈음은 직접 번역했습니다. JLPT는 공식 단어 목록을 공개하지 않으므로 범위는 추정치입니다.</p></section>
-  <section class="src"><h3>한계</h3><p>원리마다 근거는 탄탄하지만, 이 앱 자체를 사람 대상 실험으로 검증한 것은 아닙니다. 홈의 '하루 뒤 기억률'이 80% 이상이면 제대로 작동 중, 그보다 낮으면 하루 공부량을 줄이세요. 한자와 빠른 실제 회화 듣기는 이 과정 범위 밖입니다.</p></section>`;
+  ${SRC.map(([t,w,h,c,u],i)=>`<section class="src"><h2>${i+1}. ${t}</h2><p>${w}</p><p class="use"><b>앱에서:</b> ${h}</p><p class="cite"><a href="${u}" target="_blank" rel="noopener">${c}</a></p></section>`).join('')}
+  <section class="src"><h2>하루 새 레슨 ${capN()}개 상한 · 최종 시험 조건</h2><p>가상 학습자 시뮬레이션에서 몰아서 하면 시험은 통과해도 1주 뒤 기억이 크게 떨어졌습니다. 그래서 새 레슨은 하루 ${capN()}개까지, 최종 시험은 3일 간격 복습을 통과한 카드가 전체 85%, 모든 역에서 80% 이상일 때 열립니다.</p></section>
+  <section class="src"><h2>4가지 영역의 균형 (Nation의 Four Strands)</h2><p>좋은 언어 과정은 의미 중심 입력(읽기·듣기), 의미 중심 출력(말하기), 언어 형태 학습(단어·문법), 유창성 개발을 고르게 담아야 한다는 원칙입니다.</p><p class="use"><b>앱에서:</b> 입력 = 독해·청해·상황 대응, 출력 = 소리 내어 말하기·직접 떠올리기, 형태 학습 = 카드·문형, 유창성 = ⚡ 스피드 복습.</p><p class="cite"><a href="https://core.ac.uk/download/357330216.pdf" target="_blank" rel="noopener">Nation (2007), Innovation in Language Learning and Teaching</a></p></section>
+  <section class="src"><h2>자동화 (유창성 개발)</h2><p>느리고 의식적인 처리가 연습을 통해 빠르고 자동적인 처리로 바뀝니다. 실제 회화·청해는 속도 싸움이라, 아는 것을 빨리 꺼내는 연습이 따로 필요합니다.</p><p class="use"><b>앱에서:</b> 이미 익힌 카드만 20문제를 빠르게. 응답 시간을 재고, 2.5초 이내·정답 95%를 목표로 합니다. 하루 새 레슨을 다 하면 자동으로 권합니다. 말하기 속도도 0.7~1.15배로 올려 가며 들을 수 있습니다.</p><p class="cite"><a href="https://doi.org/10.1002/9781405198431.wbeal0067" target="_blank" rel="noopener">DeKeyser & Criado (2013); Suzuki, Maie & Hui (2025), Language Teaching</a></p></section>
+  <section class="src"><h2>시험 형식 그대로 연습 (전이 적합 처리)</h2><p>배울 때의 처리 방식이 시험에서 요구되는 처리 방식과 같을수록 성적이 잘 나온다는 원리입니다.</p><p class="use"><b>앱에서:</b> JLPT 문제 유형을 그대로 넣었습니다 — 漢字読み·表記·文脈規定(빈칸)·言い換え(비슷한 말)·文の組み立て(문장 조립)·読解·課題/ポイント理解(대화 청해)·即時応答(3지선다). 노선마다 40문제 모의고사는 JLPT와 같은 방식으로 환산 점수와 과목별 기준점을 보여 줍니다.</p><p class="cite">Morris, Bransford & Franks (1977), Journal of Verbal Learning and Verbal Behavior</p></section>
+  <section class="src"><h2>한국어 한자음 활용</h2><p>N5 노선의 한자는 한국 훈음(日 = 날 일)으로 익힙니다. 한국 한자음과 일본 음독은 대응하는 경우가 많아서(학교 → がっこう) 한국어 화자에게 큰 이점입니다. 한자 카드와 '한국 한자음 → 일본 음독' 문형에서 연습합니다.</p></section>
+  <section class="src"><h2>데이터 출처</h2><p>JLPT 단어 목록: open-anki-jlpt-decks (Jamie Sinclair, MIT 라이선스, Jonathan Waller의 JLPT 목록 기반). 한자 읽기: kanji-data (David Gouveia, MIT 라이선스). 한국어 뜻·훈음은 직접 번역했습니다. JLPT는 공식 단어 목록을 공개하지 않으므로 범위는 추정치입니다.</p></section>
+  <section class="src"><h2>한계</h2><p>원리마다 근거는 탄탄하지만, 이 앱 자체를 사람 대상 실험으로 검증한 것은 아닙니다. 홈의 '하루 뒤 기억률'이 80% 이상이면 제대로 작동 중, 그보다 낮으면 하루 공부량을 줄이세요. 한자와 빠른 실제 회화 듣기는 이 과정 범위 밖입니다.</p></section>`;
 }
 function install(){
   return `<div class="top"><button class="x" data-act="home" aria-label="홈">←</button><span class="tag">설치</span></div>
   <h1>홈 화면에 추가하기</h1><p class="sub">이 페이지 주소를 홈 화면에 아이콘으로 꽂아 두면 앱처럼 바로 열립니다.</p>
-  <section class="src"><h3>안드로이드 (크롬)</h3><p>이 페이지를 크롬으로 열기 → 오른쪽 위 ⋮ → <b>앱 설치</b>(또는 홈 화면에 추가). 설치하면 오프라인에서도 열립니다.</p></section>
-  <section class="src"><h3>아이폰 (사파리)</h3><p>이 페이지를 사파리로 열기 → 아래 공유 버튼 → <b>홈 화면에 추가</b>.</p></section>
-  <section class="src"><h3>알아둘 점</h3><p>Claude 앱 안이 아니라 <b>브라우저(크롬·사파리)</b>에서 열어야 메뉴가 보여요. 인터넷이 필요하고, 기록은 그 브라우저에 저장되니 항상 같은 아이콘으로 여세요.</p></section>`;
+  <section class="src"><h2>안드로이드 (크롬)</h2><p>이 페이지를 크롬으로 열기 → 오른쪽 위 ⋮ → <b>앱 설치</b>(또는 홈 화면에 추가). 설치하면 오프라인에서도 열립니다.</p></section>
+  <section class="src"><h2>아이폰 (사파리)</h2><p>이 페이지를 사파리로 열기 → 아래 공유 버튼 → <b>홈 화면에 추가</b>.</p></section>
+  <section class="src"><h2>알아둘 점</h2><p>Claude 앱 안이 아니라 <b>브라우저(크롬·사파리)</b>에서 열어야 메뉴가 보여요. 인터넷이 필요하고, 기록은 그 브라우저에 저장되니 항상 같은 아이콘으로 여세요.</p></section>`;
 }
 const KT={lesson:'레슨',review:'복습',fix:'틀린 것 다시',test:'통과 시험',final:'종합 시험',flu:'스피드 복습',mock:'모의고사'};
 function session(){
@@ -911,12 +919,12 @@ function session(){
     const prompt=q.kind==='listen'?`<button class="bigsay" data-say="${esc(q.say)}" aria-label="다시 듣기">🔊</button>${q.peek||ans?`<div class="${q.q2?'passage':'mid'} jp" style="margin-top:12px">${esc(q.pt||q.c.j)}</div>`:`<button class="peek" data-act="peek">소리가 안 나요 → 글자 보기</button>`}${q.q2?`<div class="q2 jp">${esc(q.q2)}</div>`:''}`
       :`${(q.pj||q.ph)&&(q.ph||q.say)?`<button class="say" data-say="${esc(q.ph||q.say)}" aria-label="듣기">🔊</button>`:''}<div class="${q.passage?'passage':q.big?'big':q.pj?'mid':'ko'} ${q.pj?'jp':''}">${esc(q.p)}</div>${q.q2?`<div class="q2 jp">${esc(q.q2)}</div>`:''}${q.sub?`<div class="r">${esc(q.sub)}</div>`:''}${heard}`;
     body=`<div class="flash" style="min-height:200px">${prompt}<div class="hint">${q.hint}</div></div>
-    <div class="opts">${q.opts.map((o,i)=>{let cls='';if(ans){if(o===q.ans)cls='right';else if(i===q.picked)cls='wrong'}return `<button class="opt ${q.oj?'jp':''} ${cls}" data-opt="${i}" ${ans?'disabled':''}>${esc(o)}</button>`}).join('')}</div>
+    <div class="opts">${q.opts.map((o,i)=>{let cls='';if(ans){if(o===q.ans)cls='right';else if(i===q.picked)cls='wrong'}return `<button class="opt ${q.oj?'jp':''} ${cls}" data-opt="${i}" ${ans?'disabled':''}>${esc(o)}${cls==='right'?'<span class="mk">✓ 정답</span>':cls==='wrong'?'<span class="mk">✗ 내 답</span>':''}</button>`}).join('')}</div>
     ${ans&&q.dt&&s.kind==='flu'?`<div class="fb ${q.dt<=2.5?'ok':''}">${q.dt.toFixed(1)}초 ${q.dt<=2.5?'— 자동화 수준':'— 목표 2.5초 이내'}</div>`:''}${ans&&q.tr?`<div class="tr"><b>해석</b> ${esc(q.tr)}</div>`:''}${ans?`${!q.ok&&q.c.t!=='gram'&&!q.tr?`<div class="fb no"><span class="jp">${esc(q.c.j)}</span> = ${q.c.r&&q.c.r!==q.c.j?esc(q.c.r)+' · ':''}${esc(q.c.k)}${q.c.m?`<div class="mn">💡 ${esc(q.c.m)}</div>`:''}</div>`:''}<div class="row"><button class="btn pri" data-act="next">다음</button></div>`:''}`;
   }
   return top(pr)+body;
 }
-const top=p=>`<div class="top"><button class="x" data-act="quit" aria-label="그만하기">✕</button><div class="bar"><i style="width:${Math.round(p*100)}%"></i></div><span class="tag">${ses.phase==='pre'?'먼저 맞혀보기':KT[ses.kind]}${ses.kind==='mock'&&ses.q&&ses.q.sec?' · '+ses.q.sec:''}</span><button class="x" data-act="mute" aria-label="소리 켜기/끄기">${st.mute?'🔇':'🔈'}</button></div>`;
+const top=p=>`<div class="top"><button class="x" data-act="quit" aria-label="그만하기">✕</button><h1 class="vh">${KT[ses.kind]||'공부'}</h1><div class="bar" role="progressbar" aria-label="진행률" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${Math.round(p*100)}"><i style="width:${Math.round(p*100)}%"></i></div><span class="tag">${ses.phase==='pre'?'먼저 맞혀보기':KT[ses.kind]}${ses.kind==='mock'&&ses.q&&ses.q.sec?' · '+ses.q.sec:''}</span><button class="x" data-act="mute" aria-label="소리 끄기" aria-pressed="${!!st.mute}">${st.mute?'🔇':'🔈'}</button></div>`;
 
 function result(){
   const s=ses,n=nextStep(),acc=s.done?Math.round(s.right/s.done*100):100;
@@ -928,18 +936,18 @@ function result(){
       const a=Math.round(lk*60),b=Math.round(pc('독해')*60),c2=Math.round(pc('청해')*60);rows=[['언어지식 (문자·어휘·문법)',a,60,19],['독해',b,60,19],['청해',c2,60,19]];tot=a+b+c2;passTot=95}
     else{const n=['문자·어휘','문법','독해'].reduce((x,k)=>x+(sec[k]?sec[k][1]:0),0),r=['문자·어휘','문법','독해'].reduce((x,k)=>x+(sec[k]?sec[k][0]:0),0);const a=Math.round(r/(n||1)*120),c2=Math.round(pc('청해')*60);rows=[['언어지식·독해',a,120,38],['청해',c2,60,19]];tot=a+c2;passTot=s.t.key==='n4'?90:80}
     ok=tot>=passTot&&rows.every(r=>r[1]>=r[3]);const goal=Math.round(180*.7);
-    return `<div class="result"><strong>${tot}<small style="font-size:22px">/180</small></strong><p>${s.t.name.replace(' 노선','')} 모의고사 · ${m}분 · 환산 점수</p>
+    return `<h1 class="vh">결과</h1><div class="result"><strong>${tot}<small style="font-size:22px">/180</small></strong><p>${s.t.name.replace(' 노선','')} 모의고사 · ${m}분 · 환산 점수</p>
     <div class="wl">${rows.map(r=>`<div><b>${r[0]}</b> ${r[1]}/${r[2]} <small style="color:var(--mut)">(기준점 ${r[3]})</small> ${r[1]>=r[3]?'✓':'✗'}</div>`).join('')}
     ${Object.keys(sec).map(k=>`<div style="color:var(--mut);font-size:14px">${k} ${sec[k][0]}/${sec[k][1]}</div>`).join('')}</div>
     <p>실제 JLPT 합격선: 총점 ${passTot}점 + 과목별 기준점 → <b>${ok?'합격선 이상':'합격선 미달'}</b></p>
     <p>이 모의고사는 실제 시험보다 보기가 쉬운 편이라, <b>${goal}점(70%) 이상</b>을 안정권으로 보세요. 틀린 카드는 복습으로 다시 돌립니다.</p>
     <div class="row"><button class="btn" data-act="home">홈</button><button class="btn pri" data-mock="${s.t.key}">다시 풀기</button></div></div>`}
-  if(s.kind==='flu')return `<div class="result"><strong>${s.avg?s.avg.toFixed(1):'—'}초</strong><p>스피드 복습 · 평균 응답 시간 · 정답 ${s.right}/${s.total}${st.flu&&st.flu.best?` · 최고 기록 ${st.flu.best.toFixed(1)}초`:''}</p><p>목표: 정답 95% 이상, 평균 2.5초 이내. 틀린 카드는 복습으로 다시 돌립니다.</p>${nl}<div class="row"><button class="btn" data-act="home">홈</button>${nb}</div></div>`;
+  if(s.kind==='flu')return `<h1 class="vh">결과</h1><div class="result"><strong>${s.avg?s.avg.toFixed(1):'—'}초</strong><p>스피드 복습 · 평균 응답 시간 · 정답 ${s.right}/${s.total}${st.flu&&st.flu.best?` · 최고 기록 ${st.flu.best.toFixed(1)}초`:''}</p><p>목표: 정답 95% 이상, 평균 2.5초 이내. 틀린 카드는 복습으로 다시 돌립니다.</p>${nl}<div class="row"><button class="btn" data-act="home">홈</button>${nb}</div></div>`;
   if(s.kind==='lesson'||s.kind==='review'||s.kind==='fix')
-    return `<div class="result"><strong>${acc}%</strong><p>${KT[s.kind]} 완료 · 정답률${s.kind==='lesson'?` · 새 카드 ${s.newIds.length}장`:''}</p>${nl}<div class="row"><button class="btn" data-act="home">홈</button>${nb}</div></div>`;
+    return `<h1 class="vh">결과</h1><div class="result"><strong>${acc}%</strong><p>${KT[s.kind]} 완료 · 정답률${s.kind==='lesson'?` · 새 카드 ${s.newIds.length}장`:''}</p>${nl}<div class="row"><button class="btn" data-act="home">홈</button>${nb}</div></div>`;
   const pass=s.score>=(s.kind==='final'?CPP:PASS),wl=[...s.wrong].map(id=>ALL.find(c=>c.id===id));
   const msg=pass?(s.kind==='final'?`${s.t.cp} 합격! ${s.t.key==='intro'?'가나·기초 문형·여행 상황 대응 기본기를 갖췄습니다.':s.t.key.toUpperCase()+' 범위의 한자·어휘·문형·독해·청해 기본기를 갖췄습니다.'}`:s.out?'건너뛰기 성공! 이 역 레슨은 완료 처리했어요.':`통과! ${s.s+2<=N?(s.s+2)+'역이 열렸어요.':'종착역으로.'}`):(s.out?`${PASS}점에 못 미쳤어요. 레슨부터 차근차근 가요.`:`${s.kind==='final'?CPP:PASS}점이 통과선. 틀린 것만 다시 잡고 재시험합니다.`);
-  return `<div class="result">${pass&&s.kind==='final'?`<div class="cert"><p style="margin:0">${s.t.cp}</p><strong>합격</strong><p>최종 시험 ${s.score}점 · 공부 ${hrs(st.time)}시간</p></div>`:`<strong>${s.score}점</strong>`}
+  return `<h1 class="vh">결과</h1><div class="result">${pass&&s.kind==='final'?`<div class="cert"><p style="margin:0">${s.t.cp}</p><strong>합격</strong><p>최종 시험 ${s.score}점 · 공부 ${hrs(st.time)}시간</p></div>`:`<strong>${s.score}점</strong>`}
   <p>${s.right}/${s.total} 정답 · ${msg}</p>
   ${wl.length?`<div class="wl"><b>틀린 것</b>${wl.map(c=>`<div><span class="jp">${esc(c.j)}</span> — ${esc(c.k)}</div>`).join('')}</div>`:''}
   ${nl}<div class="row"><button class="btn" data-act="home">홈</button>${nb}</div></div>`;
