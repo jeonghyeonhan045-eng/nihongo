@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko"><head><meta charset="utf-8"><meta name="appv" content="1795491588"><meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="ko"><head><meta charset="utf-8"><meta name="appv" content="1795493907"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>일본어 공부하자</title>
 <meta name="theme-color" content="#c8102e">
 <link rel="manifest" href="manifest.json">
@@ -676,7 +676,7 @@ st.cp=st.cp||{};if(st.final&&!st.cp.intro)st.cp.intro=st.final;
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}};
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const now=()=>Date.now();
-const AV=5;
+const AV=7;
 const norm=t=>String(t).split('=')[0].replace(/[〜~]/g,'').replace(/→/g,'、').replace(/\//g,'、').split('、').filter(x=>!/[가-힣]/.test(x)).join('、').trim();
 let AIDX=null;const APK={},APL={};const AEL=new Audio();AEL.preservesPitch=true;let vflip=0;
 function aLoadIdx(){if(AIDX)return;AIDX={};fetch('au-index.json?v='+AV+'').then(r=>r.json()).then(j=>{AIDX=j;aWarm()}).catch(()=>{})}
@@ -688,7 +688,7 @@ function ttsSay(t){try{const ss=speechSynthesis,busy=ss.speaking||ss.pending;if(
 function say(t){if(st.mute||!t)return;t=norm(t);if(!t)return;try{AEL.pause()}catch(e){}try{if(speechSynthesis.speaking)speechSynthesis.cancel()}catch(e){}
   const e=AIDX&&AIDX.t&&AIDX.t[t];
   if(e){const vp=st.voice||'mix';let v=vp==='f'?0:vp==='m'?1:(vflip++%2);if(!e[v])v=0;const [p,o,l]=e[v];const b=APK[p];
-    if(b){const u=URL.createObjectURL(new Blob([b.slice(o,o+l)],{type:'audio/mpeg'}));if(AEL._u)URL.revokeObjectURL(AEL._u);AEL._u=u;AEL.src=u;AEL.playbackRate=(st.rate||.85)+.15;AEL.play().catch(()=>ttsSay(t));return}
+    if(b){const u=URL.createObjectURL(new Blob([b.slice(o,o+l)],{type:(AIDX.mime||'audio/mpeg')}));if(AEL._u)URL.revokeObjectURL(AEL._u);AEL._u=u;AEL.src=u;AEL.playbackRate=(st.rate||.85)+.15;AEL.play().catch(()=>ttsSay(t));return}
     aPack(p)}
   if(t.startsWith('lis:')){const c=ALL.find(x=>x.au===t);if(c)ttsSay([c.q,...c.l.map(x=>x[1])].filter(Boolean).join(' '));return}
   ttsSay(t)}
@@ -719,9 +719,9 @@ const cpN=t=>t.per*(t.to-t.from+1);
 function distract(c,f,filt=()=>true){const fc=f(c),ok=x=>x.t===c.t&&x!==c&&filt(x)&&f(x)&&f(x)!==fc;const cur=ses&&ses.intro?ses.intro:[];const known=x=>learned(x)||cur.includes(x);const sc=S[c.s].cards,cf=CONFM[c.j]||[];
   const tiers=[sc.filter(x=>ok(x)&&known(x)&&cf.includes(x.j)),sc.filter(x=>ok(x)&&known(x)),sc.filter(ok),ALL.filter(ok)];const o=[];
   for(const t of tiers)for(const v of shuffle(t.map(f)))if(!o.includes(v)){o.push(v);if(o.length>=3)return o}return o}
-const TK={lis:['dlg'],dlg:['dlg'],read:['comp'],kana:['read','listen'],word:['recall','listen'],phrase:['recall','listen'],gram:['ex'],sit:['resp','hear'],kanji:['mean','recall']};
-const RK={lis:['dlg'],dlg:['dlg'],read:['comp'],kana:['read','self','listen'],word:['self','recall','mean','listen'],phrase:['self','listen','recall'],gram:['ex'],sit:['resp','self','hear'],kanji:['mean','recall','self']};
-const NK={lis:['dlg'],kana:['read','listen'],word:['mean','self'],phrase:['listen','self'],gram:['ex','ex'],sit:['resp','self'],kanji:['mean','recall'],read:['comp'],dlg:['dlg']};
+const TK={lis:['dlg'],dlg:['dlg'],read:['comp'],kana:['read','pick'],word:['recall','listen'],phrase:['recall','listen'],gram:['ex'],sit:['resp','hear'],kanji:['mean','recall']};
+const RK={lis:['dlg'],dlg:['dlg'],read:['comp'],kana:['read','self','pick'],word:['self','recall','mean','listen'],phrase:['self','listen','recall'],gram:['ex'],sit:['resp','self','hear'],kanji:['mean','recall','self']};
+const NK={lis:['dlg'],kana:['read','pick'],word:['mean','self'],phrase:['listen','self'],gram:['ex','ex'],sit:['resp','self'],kanji:['mean','recall'],read:['comp'],dlg:['dlg']};
 TK.read=RK.read=['comp'];TK.dlg=RK.dlg=['dlg'];NK.fill=TK.fill=RK.fill=['comp'];NK.para=TK.para=RK.para=['comp'];NK.quick=TK.quick=RK.quick=['dlg'];TK.gram=RK.gram=['ex','ex','hearex'];
 const kindsFor=(c,tb)=>{if(c.lv&&c.kj){if(tb===NK)return ['mean','kread'];if(tb===TK)return ['recall','listen','kread','kwrite','kread'];return [...RK.word,'kread','kwrite']}return tb[c.t]};
 function buildQ(c,e){const extra=uniq(PART.filter(p=>p.length===1&&!e.tok.includes(p)),'',1);return {c,kind:'build',p:e.b,ans:e.tok.join(' '),chips:shuffle([...e.tok,...extra]),sel:[],say:e.a,hint:'일본어로 문장을 만드세요'}}
@@ -734,7 +734,7 @@ function mkQ(c,kind){
 function mkQ0(c,kind){
   kind=kind||pick(kindsFor(c,RK));
   const SY=c.sy||c.j;
-  if(st.mute&&kind==='listen'){lisDebt(c);kind=c.t==='kana'?'pick':'mean'}
+  if(st.mute&&kind==='listen'&&c.t!=='kana'){lisDebt(c);kind='mean'}
   if(c.t==='sit'){
     if(kind==='hear'&&c.h){const f=x=>x.hk;const opts=shuffle([c.hk,...distract(c,f,x=>!!x.h)]);
       return st.mute?{c,kind:'mc',p:c.h,pj:1,ans:c.hk,opts,say:c.h,hint:'점원이 한 말의 뜻은?'}:{c,kind:'listen',ans:c.hk,opts,say:c.h,pt:c.h,hint:'들리는 말의 뜻은?'}}
@@ -769,12 +769,11 @@ function mkQ0(c,kind){
     let o=uniq(EQ1.filter(x=>x.s===c.s).map(x=>x.b),e.b,3);if(o.length<3)o=o.concat(uniq(EQ1.map(x=>x.b),e.b,9).filter(v=>!o.includes(v)).slice(0,3-o.length));
     return {c,kind:'mc',p:e.a,pj:1,ans:e.b,opts:shuffle([e.b,...o]),say:e.a,hint:'뜻은?'};
   }
-  if(kind==='self'){if(c.t==='kana')return {c,kind:'self',p:c.j,pj:1,big:1,rev:c.r+' · '+c.k,say:c.j,hint:'읽는 법을 소리 내어 말해 본 뒤 확인'};
+  if(kind==='self'){if(c.t==='kana')return {c,kind:'self',p:c.j,pj:1,big:1,rev:c.r+' · '+c.k,say:'',hint:'읽는 법을 소리 내어 말해 본 뒤 확인'};
     return {c,kind:'self',p:c.k,rev:c.j,revr:c.r,say:SY,hint:'일본어로 소리 내어 말해 본 뒤 확인 (입 모양만 움직여도 효과 있음)'}}
   if(c.t==='kana'){
-    if(kind==='listen')return {c,kind:'listen',ans:c.j,opts:shuffle([c.j,...distract(c,x=>x.j,x=>x.k!==c.k)]),oj:1,say:c.j,hint:'들리는 글자는?'};
-    if(kind==='pick')return {c,kind:'mc',p:c.r+' · '+c.k,ans:c.j,opts:shuffle([c.j,...distract(c,x=>x.j,x=>x.k!==c.k)]),oj:1,say:c.j,hint:'어느 글자일까요?'};
-    const f=x=>x.r+' · '+x.k;return {c,kind:'mc',p:c.j,pj:1,big:1,ans:f(c),opts:shuffle([f(c),...distract(c,f,x=>x.k!==c.k)]),say:c.j,hint:'읽는 법은?'};
+    if(kind==='listen'||kind==='pick')return {c,kind:'mc',p:c.r+' · '+c.k,ans:c.j,opts:shuffle([c.j,...distract(c,x=>x.j,x=>x.k!==c.k)]),oj:1,say:c.j,hint:'어느 글자일까요?',say:''};
+    const f=x=>x.r+' · '+x.k;return {c,kind:'mc',p:c.j,pj:1,big:1,ans:f(c),opts:shuffle([f(c),...distract(c,f,x=>x.k!==c.k)]),say:'',hint:'읽는 법은?'};
   }
   const nk=x=>x.k!==c.k,nj=x=>x.j!==c.j&&(!c.lv||x.r!==c.r);
   if(kind==='recall')return {c,kind:'mc',p:c.k,ans:c.j,opts:shuffle([c.j,...distract(c,x=>x.j,nk)]),oj:1,say:SY,hint:'일본어로는?'};
@@ -868,7 +867,7 @@ function advance(){const s=ses;
   if(s.phase==='pre'){s.pi++;if(s.pi<s.pre.length){s.q=s.pre[s.pi];return}s.phase='intro';s.q=null;return}
   s.q=s.queue.shift()||null;if(s.q&&st.mute&&s.q.kind==='listen'){lisDebt(s.q.c);s.q=mkQ(s.q.c)}if(!s.q)finish()}
 function speakNow(){if(view!=='ses'||!ses)return;const q=ses.q;
-  if(ses.phase==='intro'){const c=ses.intro[ses.ii];if(c.t!=='kanji')say(c.t==='sit'&&c.h?c.h+'。'+c.j:(c.sy||c.j))}
+  if(ses.phase==='intro'){const c=ses.intro[ses.ii];if(c.t!=='kanji'&&c.t!=='kana')say(c.t==='sit'&&c.h?c.h+'。'+c.j:(c.sy||c.j))}
   else if(q&&q.ok===undefined){if(q.kind==='listen')say(q.say);else if(q.ph)say(q.ph)}}
 
 setInterval(()=>{if(view==='ses'&&!document.hidden&&now()-lastAct<9e4){st.time++;if(st.time%15===0)save()}},1000);
@@ -994,7 +993,7 @@ function wrongView(){const L=wrongList();
   return `<div class="top"><button class="x" data-tab="practice" aria-label="연습으로">←</button><span class="tag">틀린 문제 모음</span></div>
   <h1>틀린 문제 모음</h1><p class="sub">틀린 카드가 최근 순으로 모여요. 다른 날에 2번 맞히면 목록에서 빠져요.</p>
   ${L.length?`<button class="go" data-act="wrongdrill"><b>틀린 것만 다시 풀기 ▶</b><span>${Math.min(20,L.length)}장 · 많이 틀린 것부터</span></button>
-  <ul class="wl2">${L.map(([c,w])=>`<li>${pic(c)}<div class="wt"><b class="jp" lang="ja">${esc(c.t==='read'||c.t==='dlg'?(c.q||c.j).slice(0,40):c.j.length>40?c.j.slice(0,40)+'…':c.j)}</b>${c.r&&c.r!==c.j&&c.t!=='kanji'?` <span class="jp r2">${esc(c.r)}</span>`:''}<small>${esc(c.t==='fill'||c.t==='para'||c.t==='quick'||c.t==='read'||c.t==='dlg'?'정답: '+(c.a||''):c.k)}</small></div><span class="wn">✗${w.n}</span>${c.t==='word'||c.t==='kana'||c.t==='phrase'?`<button class="say" data-say="${esc(c.sy||c.j)}" aria-label="듣기">🔊</button>`:''}</li>`).join('')}</ul>
+  <ul class="wl2">${L.map(([c,w])=>`<li>${pic(c)}<div class="wt"><b class="jp" lang="ja">${esc(c.t==='read'||c.t==='dlg'?(c.q||c.j).slice(0,40):c.j.length>40?c.j.slice(0,40)+'…':c.j)}</b>${c.r&&c.r!==c.j&&c.t!=='kanji'?` <span class="jp r2">${esc(c.r)}</span>`:''}<small>${esc(c.t==='fill'||c.t==='para'||c.t==='quick'||c.t==='read'||c.t==='dlg'?'정답: '+(c.a||''):c.k)}</small></div><span class="wn">✗${w.n}</span>${c.t==='word'||c.t==='phrase'?`<button class="say" data-say="${esc(c.sy||c.j)}" aria-label="듣기">🔊</button>`:''}</li>`).join('')}</ul>
   <p class="note"><button class="peek" data-act="wrongclear" style="margin:0;padding:0">목록 비우기</button></p>`:'<div class="flash"><p class="hint">아직 틀린 문제가 없어요. 레슨·복습·시험에서 틀리면 여기에 모여요.</p></div>'}`}
 function practice(){const fp=fluPool().length,rdT=st.rd&&st.rd.days&&st.rd.days[today()]||0,mocks=TR.filter(t=>t.key!=='intro');
   return `<h1>연습</h1><p class="sub">'이어서 하기'와 별개로, 원할 때 골라서 하는 연습이에요.</p>
@@ -1038,7 +1037,7 @@ function stage(){
   <button class="lesson ${st.pass[vs]>=PASS?'done':''}" data-act="test" ${lk||!all?'disabled':''}><i>${st.pass[vs]>=PASS?'✓':'★'}</i><span><b>통과 시험</b> 20문제 · ${PASS}점 ${all?'':'<small>(레슨을 다 하면 열림)</small>'}</span><small>${st.pass[vs]}점</small></button>
   ${!lk&&st.pass[vs]<PASS?`<button class="lesson" data-act="testout"><i>⇥</i><span><b>이미 알아요 → 건너뛰기 시험</b> <small>통과하면 이 역 레슨을 건너뜁니다</small></span><small></small></button>`:''}
   <details><summary>단어장 전체 (${s.cards.length})</summary>
-  ${s.cards.map(c=>EXAM.includes(c.t)?`<div class="item"><div><span class="jp" style="font-size:15px;font-weight:500">${esc(c.j.split('／').join(' / '))}</span><small>${({read:'독해',dlg:'청해',fill:'빈칸',para:'비슷한 말',quick:'즉시 응답'})[c.t]} · ${c.q?esc(c.q)+' → ':''}${esc(c.a)}</small></div><button data-say="${esc(c.j)}" aria-label="듣기">🔊</button></div>`:`<div class="item"><div><span class="jp">${esc(c.j)}</span><small>${c.t==='sit'?esc(c.ctx)+(c.h?' · '+esc(c.h):'')+' → ':''}${c.r?esc(c.r)+' · ':''}${esc(c.k)}</small>${c.n?`<small class="jp">${esc(c.n.split(';')[0])}</small>`:''}</div><button data-say="${esc(c.j)}" aria-label="발음 듣기">🔊</button></div>`).join('')}</details>`;
+  ${s.cards.map(c=>EXAM.includes(c.t)?`<div class="item"><div><span class="jp" style="font-size:15px;font-weight:500">${esc(c.j.split('／').join(' / '))}</span><small>${({read:'독해',dlg:'청해',lis:'청해',fill:'빈칸',para:'비슷한 말',quick:'즉시 응답'})[c.t]} · ${c.q?esc(c.q)+' → ':''}${esc(c.a)}</small></div><button data-say="${esc(c.au||c.j)}" aria-label="듣기">🔊</button></div>`:`<div class="item"><div><span class="jp">${esc(c.j)}</span><small>${c.t==='sit'?esc(c.ctx)+(c.h?' · '+esc(c.h):'')+' → ':''}${c.r?esc(c.r)+' · ':''}${esc(c.k)}</small>${c.n?`<small class="jp">${esc(c.n.split(';')[0])}</small>`:''}</div>${c.t==='kana'?'':`<button data-say="${esc(c.sy||c.j)}" aria-label="발음 듣기">🔊</button>`}</div>`).join('')}</details>`;
 }
 
 const SRC=[
@@ -1083,7 +1082,7 @@ function session(){
     const c=s.intro[s.ii];
     const sitBox=c.t==='sit'?`<div class="ctx">${esc(c.ctx)}</div>${c.h?`<div class="heard jp">「${esc(c.h)}」</div><div class="r">${esc(c.hk)}</div><div class="arrow">↓ 이렇게 말해요</div>`:'<div class="arrow">↓ 이렇게 말해요</div>'}`:'';
     return `${top(s.ii/(s.intro.length*3))}
-    <div class="flash">${c.t==='kanji'?'':`<button class="say" data-say="${esc(c.t==='sit'&&c.h?c.h+'。'+c.j:(c.sy||c.j))}" aria-label="다시 듣기">🔊</button>`}${sitBox}
+    <div class="flash">${c.t==='kanji'||c.t==='kana'?'':`<button class="say" data-say="${esc(c.t==='sit'&&c.h?c.h+'。'+c.j:(c.sy||c.j))}" aria-label="다시 듣기">🔊</button>`}${sitBox}
     ${pic(c)}<div class="${c.t==='kana'||c.t==='kanji'?'big':'mid'} jp">${esc(c.j)}</div>${c.r&&c.r!==c.j?`<div class="r ${c.lv||c.t==='kanji'?'jp':''}">${esc(c.r)}</div>`:''}<div class="k">${esc(c.k)}</div>${c.m?`<div class="mn">${c.t==='kanji'?'예) ':'💡 '}${esc(c.m)}</div>`:''}${hanja(c)}
     ${c.ex.length?`<div class="ex">${c.ex.map(e=>`<div><span class="jp">${esc(e.te?e.a+' → '+e.b:e.a)}${e.te?'':`<br><small>${esc(e.b)}</small>`}</span><button data-say="${esc(e.te?e.a+'、'+e.b:e.a)}" aria-label="듣기">🔊</button></div>`).join('')}</div>`:''}
     <div class="hint">${c.t==='kanji'?'훈음과 음독을 소리 내어 두 번 읽기':st.mute?'보고 입 모양으로 두 번 따라 하기':'🔊 듣고 소리 내어 두 번 따라 말하기'}</div></div>
