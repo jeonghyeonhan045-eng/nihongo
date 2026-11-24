@@ -129,6 +129,26 @@ h2 small{font-size:14px;color:var(--mut);font-weight:600}
 .chips-wrap{display:flex;flex-wrap:wrap;gap:8px}.chips-wrap .chip{min-width:52px;font:700 16px 'Noto Sans KR'}.startbtn{margin:0}
 .pic{font-size:64px;line-height:1;margin:6px 0 4px}.fb .pic{font-size:44px}
 .hj{margin-top:10px;font-size:15px;color:var(--ink);font-weight:500;line-height:1.7}.hj b{font-size:18px}
+.hd{display:flex;align-items:center;justify-content:space-between;gap:8px}.hd h1{margin:8px 0}.hd-ic{display:flex;gap:6px;flex:none}
+.ic{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--card);font-size:19px;display:grid;place-items:center;padding:0}.ic.off{border-color:var(--redt)}
+.mutenote{font-size:14px;color:var(--mut);margin:0 0 4px}.tip{font-size:14px;margin:6px 0 0;color:var(--ink)}
+.sec{margin-top:28px;border-top:1px solid var(--line);padding-top:4px}.sec>h2{margin:18px 0 2px}.sec>.sub{font-size:14px;margin-bottom:12px}
+.feat{display:flex;gap:14px;align-items:flex-start;width:100%;text-align:left;padding:14px 16px;margin:0 0 10px;border-radius:16px;border:1px solid var(--line);background:var(--card);min-height:44px}
+.feat:disabled{opacity:1}.feat:disabled .ft b,.feat:disabled .ft small{color:var(--mut)}
+.fi{font-size:28px;line-height:1.2;flex:none}.ft{display:flex;flex-direction:column;gap:3px;flex:1}.ft b{font-size:17px}.ft b small{font-size:13px;color:var(--redt);font-weight:700;margin-left:4px}.ft>small{font-size:14px;color:var(--mut);line-height:1.5}
+.mrow{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}.mrow .chip{font:700 15px 'Noto Sans KR';min-height:44px;min-width:64px}.mrow .chip:disabled{color:var(--mut)}
+.trh{font-size:16px;margin:18px 0 8px;color:var(--ink)}.trh small{color:var(--mut);font-weight:500}
+.setrow{display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;text-align:left;padding:14px 4px;border:0;border-bottom:1px solid var(--line);background:none;min-height:56px}
+.setrow span:first-child{display:flex;flex-direction:column;gap:2px}.setrow b{font-size:16px}.setrow small{font-size:13px;color:var(--mut)}.sv{flex:none;font-weight:700;color:var(--redt);font-size:15px}
+#tabbar{position:fixed;left:0;right:0;bottom:0;z-index:20;display:flex;background:var(--bg);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom)}#tabbar[hidden]{display:none}
+#tabbar button{flex:1;min-height:60px;border:0;background:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:13px;font-weight:700;color:var(--mut)}#tabbar button span{font-size:21px;line-height:1}
+#tabbar button.on{color:var(--redt)}body.tabs main{padding-bottom:calc(90px + env(safe-area-inset-bottom))}
+.revbtn{display:flex;flex-direction:column;gap:3px;width:100%;text-align:left;margin:16px 0 0;padding:14px 18px;border-radius:18px;border:2px solid var(--red);background:var(--card);min-height:44px}.revbtn b{font-size:18px}.revbtn b small{font-size:13px;color:var(--mut)}.revbtn span{font-size:14px;color:var(--mut);line-height:1.45}
+.revbtn.big{background:var(--red);border-color:var(--red)}.revbtn.big b,.revbtn.big span,.revbtn.big b small{color:#fff}.revbtn+.go{margin-top:10px}.go:disabled{opacity:1;background:var(--card);color:var(--mut);border:1px solid var(--line)}
+.opts[hidden]{display:none!important}
+.tipbtn{width:100%;margin:10px 0 0;min-height:44px}.skiprev{display:block;margin:6px auto 0;font-size:14px;min-height:44px}
+.wl2{list-style:none;padding:0;margin:16px 0 0}.wl2 li{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}.wl2 .pic{font-size:28px;margin:0}
+.wt{flex:1;display:flex;flex-direction:column;gap:2px}.wt b{font-size:18px}.wt .r2{font-size:14px;color:var(--mut)}.wt small{font-size:14px;color:var(--mut)}.wn{flex:none;font-weight:800;color:var(--bad);font-size:14px}.wl2 .say{position:static;flex:none}
 </style></head><body>
 <main id="app" tabindex="-1"></main><div id="live" class="vh" aria-live="polite"></div>
 <script>
@@ -656,7 +676,7 @@ st.cp=st.cp||{};if(st.final&&!st.cp.intro)st.cp.intro=st.final;
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}};
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const now=()=>Date.now();
-const AV=2;
+const AV=4;
 const norm=t=>String(t).split('=')[0].replace(/[〜~]/g,'').replace(/→/g,'、').replace(/\//g,'、').split('、').filter(x=>!/[가-힣]/.test(x)).join('、').trim();
 let AIDX=null;const APK={},APL={};const AEL=new Audio();AEL.preservesPitch=true;let vflip=0;
 function aLoadIdx(){if(AIDX)return;AIDX={};fetch('au-index.json?v='+AV+'').then(r=>r.json()).then(j=>{AIDX=j;aWarm()}).catch(()=>{})}
@@ -672,8 +692,9 @@ function say(t){if(st.mute||!t)return;t=norm(t);if(!t)return;try{AEL.pause()}cat
     aPack(p)}
   ttsSay(t)}
 const learned=c=>!!st.srs[c.id];
-const dueCards=(ex=[])=>{const t=now();return ALL.filter(c=>st.srs[c.id]&&st.srs[c.id].due<=t&&!ex.includes(c)).sort((a,b)=>st.srs[a.id].due-st.srs[b.id].due)};
-const setSrs=(id,b)=>{st.srs[id]={b,due:now()+INT[b],t:now()}};
+const dueCards=(ex=[])=>{const t=now();return ALL.filter(c=>st.srs[c.id]&&st.srs[c.id].due<=t&&!ex.includes(c)).sort((a,b)=>(st.srs[a.id].b-st.srs[b.id].b)||(st.srs[a.id].due-st.srs[b.id].due))};
+const nextDay=()=>{const d=new Date(now());d.setDate(d.getDate()+1);d.setHours(4,0,0,0);return d.getTime()};
+const setSrs=(id,b)=>{st.srs[id]={b,due:Math.max(now()+INT[b],b<3?nextDay():0),t:now()}};
 const bump=(id,ok)=>{const r=st.srs[id];if(r&&r.t&&now()-r.t>=72e6){st.lt[1]++;if(ok)st.lt[0]++}setSrs(id,ok?Math.min(9,(r?r.b:0)+1):1)};
 const SK=()=>st.start||0;const skipped=i=>i<SK()&&st.pass[i]<PASS;const curSt=()=>st.pass.findIndex((p,i)=>i>=SK()&&p<PASS);
 const unlocked=i=>i<=SK()||st.pass[i-1]>=PASS;
@@ -682,7 +703,8 @@ const capN=()=>st.cap||8;
 const revToday=()=>st.rv&&st.rv.d===today()?st.rv.n:0;
 const gapDays=()=>{if(!st.rv)return 1;if(st.rv.d===today())return st.rv.g||1;return Math.max(1,Math.round((new Date(today())-new Date(st.rv.d))/864e5))};
 const rcap=()=>Math.min(600,RCAP*gapDays());
-const revOK=()=>revToday()<rcap();
+const revSkipped=()=>st.revSkip===today();
+const revOK=()=>!revSkipped()&&revToday()<rcap();
 const lessonsToday=()=>st.day&&st.day.d===today()?st.day.n:0;
 const solidOf=cs=>Math.round(cs.filter(c=>st.srs[c.id]&&st.srs[c.id].b>=5).length/cs.length*100);
 const tSt=t=>S.slice(t.from,t.to+1).map((x,k)=>[x,t.from+k]).filter(([x,i])=>!skipped(i));
@@ -702,6 +724,10 @@ TK.read=RK.read=['comp'];TK.dlg=RK.dlg=['dlg'];NK.fill=TK.fill=RK.fill=['comp'];
 const kindsFor=(c,tb)=>{if(c.lv&&c.kj){if(tb===NK)return ['mean','kread'];if(tb===TK)return ['recall','listen','kread','kwrite','kread'];return [...RK.word,'kread','kwrite']}return tb[c.t]};
 function buildQ(c,e){const extra=uniq(PART.filter(p=>p.length===1&&!e.tok.includes(p)),'',1);return {c,kind:'build',p:e.b,ans:e.tok.join(' '),chips:shuffle([...e.tok,...extra]),sel:[],say:e.a,hint:'일본어로 문장을 만드세요'}}
 function mkQ(c,kind){
+  kind=kind||pick(kindsFor(c,RK));
+  if(kind==='self'){const m={kana:'read',word:'recall',phrase:'recall',sit:'resp',kanji:'mean'}[c.t];if(m){const q=mkQ0(c,m);if(q&&q.opts){q.hide=1;q.selfk=1;q.hint=c.t==='kanji'?'뜻과 한국 한자음을 먼저 떠올려 보세요':'먼저 소리 내어 말해 본 다음, 보기를 열어 확인하세요';return q}}}
+  return mkQ0(c,kind)}
+function mkQ0(c,kind){
   kind=kind||pick(kindsFor(c,RK));
   const SY=c.sy||c.j;
   if(st.mute&&kind==='listen')kind=c.t==='kana'?'pick':'mean';
@@ -781,16 +807,16 @@ function startMock(t){const cs=S.slice(t.from,t.to+1).flatMap(x=>x.cards);const 
   const qk=take(cs.filter(c=>c.t==='quick'),12-dl.length).map(c=>Object.assign(mkQ(c),{sec:'청해'}));
   qs.push(...dl,...qk);
   ses=base({kind:'mock',t,phase:'drill',queue:qs,noRe:1,total:qs.length,t0:Date.now(),secs:{}});view='ses';advance()}
-function nextStep(){
+function nextStep(noRev){
   const due=dueCards();let pend=null;
   for(const t of TR){
     for(let s=t.from;s<=t.to;s++){
       if(st.fix[s]&&st.fix[s].length)return {kind:'fix',s,label:`${s+1}역 · 틀린 ${st.fix[s].length}장 다시 잡고 재시험`};
       if(st.pass[s]>=PASS||skipped(s))continue;
-      if(due.length>=12&&revOK())return {kind:'review',label:`복습 ${Math.min(15,due.length)}장 — 잊기 직전 카드부터`};
+      if(!noRev&&due.length>=12&&revOK())return {kind:'review',label:`복습 ${Math.min(15,due.length)}장 — 잊기 직전 카드부터`};
       const li=LES[s].findIndex((_,i)=>!st.done[s+'-'+i]);
-      if(due.length>=40&&!revOK())return {kind:'none',label:`오늘 복습 ${rcap()}장 완료. 밀린 복습이 ${due.length}장이라 새 레슨은 쉬어요 — 나눠서 정리해요.`};
-      if(li>=0&&lessonsToday()>=capN())return due.length&&revOK()?{kind:'review',label:`복습 ${Math.min(15,due.length)}장 — 오늘 새 레슨 ${capN()}개 완료`}:(!fluToday()&&fluPool().length>=20)?{kind:'flu',label:'⚡ 스피드 복습 20문제 — 아는 것을 빠르게 (유창성 훈련)'}:{kind:'none',label:`오늘 새 레슨 ${capN()}개 완료. 몰아서 하면 금방 잊어요 — 내일 이어서!`};
+      if(due.length>=40&&!revOK()&&!revSkipped())return {kind:'none',label:`오늘 복습 ${rcap()}장 완료. 밀린 복습이 ${due.length}장이라 새 레슨은 쉬어요 — 나눠서 정리해요.`};
+      if(li>=0&&lessonsToday()>=capN())return noRev?{kind:'none',s,label:`${s+1}역 ${S[s].n} · 오늘 새 레슨 ${capN()}개 끝 — 내일 레슨 ${li+1}부터`}:due.length&&revOK()?{kind:'review',label:`복습 ${Math.min(15,due.length)}장 — 오늘 새 레슨 ${capN()}개 완료`}:(!fluToday()&&fluPool().length>=20)?{kind:'flu',label:'⚡ 스피드 복습 20문제 — 아는 것을 빠르게 (유창성 훈련)'}:{kind:'none',label:`오늘 새 레슨 ${capN()}개 완료. 몰아서 하면 금방 잊어요 — 내일 이어서!`};
       if(li>=0)return {kind:'lesson',s,li,label:`${s+1}역 ${S[s].n} · 레슨 ${li+1}/${LES[s].length} — ${lname(LES[s][li])}`};
       return {kind:'test',s,label:`${s+1}역 통과 시험 — 20문제, ${PASS}점 이상이면 다음 역`};
     }
@@ -799,7 +825,7 @@ function nextStep(){
     if(st.fix[fk]&&st.fix[fk].length)return {kind:'fix',s:fk,label:`${t.cp} · 틀린 ${st.fix[fk].length}장 다시 잡고 재시험`};
     if((st.cp[t.key]||0)<CPP){if(gateOK(t))return {kind:'cp',t,label:`${t.cp} — ${cpN(t)}문제, ${CPP}점 통과`};pend=pend||t}
   }
-  if(pend)return due.length&&revOK()?{kind:'review',label:`복습 ${Math.min(15,due.length)}장 — ${pend.cp} 조건: ${gateTxt(pend)}`}:{kind:'none',label:`오늘 복습 끝. ${pend.cp} 조건: ${gateTxt(pend)} — 내일 다시!`};
+  if(pend)return !noRev&&due.length&&revOK()?{kind:'review',label:`복습 ${Math.min(15,due.length)}장 — ${pend.cp} 조건: ${gateTxt(pend)}`}:{kind:'none',label:`오늘 복습 끝. ${pend.cp} 조건: ${gateTxt(pend)} — 내일 다시!`};
   if(due.length&&revOK())return {kind:'review',label:`유지 복습 ${Math.min(15,due.length)}장`};
   return {kind:'none',label:'오늘 복습 끝. 내일 다시 오면 복습 카드가 쌓여 있어요.'};
 }
@@ -816,7 +842,7 @@ function go(n){n=n||nextStep();
 function finish(){
   const s=ses;
   if(s.kind==='lesson'){if(!st.done[s.s+'-'+s.li]){const d=today();st.day=st.day&&st.day.d===d?{d,n:st.day.n+1}:{d,n:1}}
-    st.done[s.s+'-'+s.li]=1;s.newIds.forEach(id=>setSrs(id,s.wrong.has(id)?1:2));s.revIds.forEach(id=>bump(id,!s.wrong.has(id)))}
+    st.done[s.s+'-'+s.li]=1;s.newIds.forEach(id=>setSrs(id,s.wrong.has(id)?1:3));s.revIds.forEach(id=>bump(id,!s.wrong.has(id)))}
   else if(s.kind==='mock'){s.score=Math.round(s.right/s.total*100);s.wrong.forEach(id=>{if(st.srs[id])setSrs(id,1)});st.mock=st.mock||{};st.mock[s.t.key]=Math.max(st.mock[s.t.key]||0,s.score)}
   else if(s.kind==='flu'){st.fluDay=today();s.wrong.forEach(id=>setSrs(id,1));const ok=s.times.filter(Boolean);s.avg=ok.length?ok.reduce((a,b)=>a+b,0)/ok.length:0;st.flu=st.flu||{};st.flu.last=s.avg;if(!st.flu.best||(s.avg&&s.avg<st.flu.best&&s.right/s.total>=.9))st.flu.best=s.avg}
   else if(s.kind==='review'||s.kind==='fix'){s.revIds.forEach(id=>bump(id,!s.wrong.has(id)));{const d=today();st.rv=st.rv&&st.rv.d===d?{d,n:st.rv.n+s.revIds.length,g:st.rv.g}:{d,n:s.revIds.length,g:gapDays()}}if(s.kind==='fix')st.fix[s.s]=[]}
@@ -828,7 +854,7 @@ function finish(){
     s.wrong.forEach(id=>setSrs(id,1))}
   s.phase='result';save();
 }
-function answer(ok){const s=ses,q=s.q;q.ok=ok;if(s.kind==='mock'&&q.sec){const r=s.secs[q.sec]=s.secs[q.sec]||[0,0];r[1]++;if(ok)r[0]++}if(q.sayAfter&&q.say)setTimeout(()=>say(q.say),0);if(q.t0){q.dt=(performance.now()-q.t0)/1000;if(s.times)s.times.push(ok?q.dt:0)}if(s.phase==='pre'){say(q.say);return}
+function answer(ok){const s=ses,q=s.q;q.ok=ok;if(s.phase!=='pre'&&q.c){st.wr=st.wr||{};const W=st.wr,id=q.c.id;const D=today();if(!ok){const w=W[id]||{n:0};w.n++;w.t=now();w.s=0;w.d=D;W[id]=w}else if(W[id]&&W[id].d!==D&&W[id].ld!==D){W[id].s=(W[id].s||0)+1;W[id].ld=D;if(W[id].s>=2)delete W[id]}}if(s.kind==='mock'&&q.sec){const r=s.secs[q.sec]=s.secs[q.sec]||[0,0];r[1]++;if(ok)r[0]++}if(q.sayAfter&&q.say)setTimeout(()=>say(q.say),0);if(q.t0){q.dt=(performance.now()-q.t0)/1000;if(s.times)s.times.push(ok?q.dt:0)}if(s.phase==='pre'){say(q.say);return}
   s.done++;if(ok)s.right++;else{s.wrong.add(q.c.id);if(!s.noRe)s.queue.splice(Math.min(3,s.queue.length),0,mkQ(q.c))}if(q.kind!=='self')say(q.say)}
 function advance(){const s=ses;
   if(s.phase==='pre'){s.pi++;if(s.pi<s.pre.length){s.q=s.pre[s.pi];return}s.phase='intro';s.q=null;return}
@@ -841,9 +867,9 @@ setInterval(()=>{if(view==='ses'&&!document.hidden&&now()-lastAct<9e4){st.time++
 
 const hrs=s=>(s/3600).toFixed(1);
 const stagePct=i=>Math.round(S[i].cards.filter(learned).length/S[i].cards.length*100);
-function render(){document.body.classList.toggle('mute',!!st.mute);app.innerHTML=view==='home'?home():view==='stage'?stage():view==='method'?method():view==='install'?install():view==='read'?readView():view==='start'?startView():session();window.scrollTo(0,0);a11y()}
+function render(){document.body.classList.toggle('mute',!!st.mute);app.innerHTML=(view==='practice'?practice():view==='route'?routeV():null)??(view==='home'?home():view==='stage'?stage():view==='method'?method():view==='install'?install():view==='read'?readView():view==='start'?startView():view==='settings'?settings():view==='wrong'?wrongView():session());document.body.classList.toggle('tabs',TABV.includes(view));tabbar();window.scrollTo(0,0);a11y()}
 let _ann=null;
-function a11y(){const L=document.getElementById('live');const q=ses&&view!=='home'&&view!=='stage'&&view!=='method'&&view!=='install'&&view!=='read'&&view!=='start'?ses.q:null;
+function a11y(){const L=document.getElementById('live');const q=ses&&view!=='home'&&view!=='stage'&&view!=='method'&&view!=='install'&&view!=='read'&&view!=='start'&&view!=='settings'&&view!=='wrong'?ses.q:null;
  if(q&&q.ok!==undefined&&_ann!==q){_ann=q;L.textContent=q.ok?'정답':'오답. 정답: '+(q.ans||'')}
  if(_kb){const n=app.querySelector('[data-act=next],[data-act=selfyes],[data-act=inext]');(n||app).focus({preventScroll:true})}}
 let _kb=false;addEventListener('keydown',e=>{if(e.key==='Tab'||e.key==='Enter'||e.key===' ')_kb=true});addEventListener('pointerdown',()=>{_kb=false});
@@ -874,7 +900,7 @@ function readView(){rdLoad();const r=rdS(),lv=rdLv(),td=r.days[today()]||0;
       ${q.tr?`<div class="tr"><b>영어 해석</b> ${esc(s.e)}</div>`:''}
       <p class="hint">${q.show?'모르는 단어는 눌러 보세요. 밑줄 = 아직 안 배운 단어':'먼저 듣고 뜻을 떠올린 다음 글자를 확인하세요'}</p></div>
     <div class="row"><button class="btn" data-act="rdtr" ${q.tr?'disabled':''}>해석 보기</button><button class="btn pri" data-act="rdnext">다음 문장 ▶</button></div>`}
-  return `<div class="top"><button class="x" data-act="home" aria-label="홈">←</button><span class="tag">다독 · 읽기 듣기 입력</span></div>
+  return `<div class="top"><button class="x" data-tab="practice" aria-label="연습으로">←</button><span class="tag">다독 · 읽기 듣기 입력</span></div>
   <h1>다독</h1><p class="sub">배운 단어로 된 실제 일본어 문장을 많이 읽고 듣는 연습. 모르는 단어가 1개 이하인 문장부터 나와요.</p>
   <div class="row rdtabs">${tabs}</div>
   ${body}
@@ -921,38 +947,81 @@ const pic=c=>c&&PIC[c.id]?`<div class="pic" aria-hidden="true">${PIC[c.id]}</div
 
 function startView(){const cur=SK();
   const quick=[[0,'처음부터','히라가나부터 차근차근'],[2,'가타카나부터','히라가나는 이미 읽을 수 있어요'],[4,'숫자·인사·문장부터','가나는 다 읽을 수 있어요'],[12,'JLPT N5부터','입문 내용(가나·기초 문형)은 알아요'],[17,'JLPT N4부터','N5 수준은 돼요'],[23,'JLPT N3부터','N4 수준은 돼요']];
-  return `<div class="top"><button class="x" data-act="home" aria-label="홈">←</button><span class="tag">시작 위치</span></div>
+  return `<div class="top"><button class="x" data-act="settings" aria-label="설정으로">←</button><span class="tag">시작 위치</span></div>
   <h1>어디서부터 할까요?</h1><p class="sub">고른 역부터 바로 시작해요. 앞의 역은 건너뛴 걸로 치고, 언제든 들어가서 공부하거나 '건너뛰기 시험'으로 통과 처리할 수 있어요. 진도 기록은 지워지지 않아요.</p>
   ${quick.map(([i,a,b])=>`<button class="stage ${i===cur?'done':''}" data-start="${i}"><div class="no">${i+1}</div><div><h3>${a}</h3><p>${b} — ${i+1}역 <span class="jp">${S[i].n}</span>부터</p></div></button>`).join('')}
   <h2>역 직접 고르기</h2>
   <div class="chips-wrap">${S.map((x,i)=>`<button class="chip ${i===cur?'on':''}" data-start="${i}" aria-pressed="${i===cur}" aria-label="${i+1}역 ${x.ko}">${i+1}</button>`).join('')}</div>
   <p class="sub" style="margin-top:10px;font-size:14px">${S.map((x,i)=>`${i+1} ${x.ko}`).join(' · ')}</p>`}
 
+
+const TABV=['home','route','practice','settings'];
+function tabbar(){let el=document.getElementById('tabbar');if(!el){el=document.createElement('nav');el.id='tabbar';el.setAttribute('aria-label','메뉴');document.body.appendChild(el)}
+  if(!TABV.includes(view)){el.hidden=true;return}el.hidden=false;
+  const T=[['home','🏠','오늘'],['route','🚉','노선'],['practice','📖','연습'],['settings','⚙️','설정']];
+  el.innerHTML=T.map(([v,i,l])=>`<button data-tab="${v}" ${v===view?'aria-current="page" class="on"':''}><span aria-hidden="true">${i}</span>${l}</button>`).join('')}
 function home(){
   const n=nextStep(),kn=ALL.filter(learned).length,cur=curSt(),ci=cur<0?N:cur;
   const lt=st.lt[1]>=10?Math.round(st.lt[0]/st.lt[1]*100)+'%':'—';
   const route=t=>`<div class="route" aria-label="${t.name}">${S.slice(t.from,t.to+1).map((s,k)=>{const i=t.from+k;return `<span class="dot ${st.pass[i]>=PASS?'done':''} ${i===ci?'now':''}" aria-hidden="true">${i+1}</span>`}).join('<i></i>')}<i></i><span class="dot term ${(st.cp[t.key]||0)>=CPP?'done':''}">終</span></div>`;
-  const ct=ci<N?trackOf(ci):null;
-  return `${installBanner()}<h1>일본어 공부하자</h1><p class="sub">입문 12역 → N5 5역 → N4 6역 → N3 12역. 역마다 통과 시험, 노선 끝마다 종합 시험. 읽기·듣기·회화 중심, 쓰기는 없음.</p>
-  ${TR.map(t=>`<p class="tname">${t.name}</p>${route(t)}`).join('')}
-  ${VOK===false&&!st.mute?`<div class="ib" role="note"><div><b>🔈 이 기기에 일본어 음성이 없어요</b><span>앱에 넣은 음성 파일은 그대로 나오지만, 일부 문장(다독 등)은 소리가 안 날 수 있어요. 설정에서 <b>텍스트 음성 변환</b>을 검색 → 기본 엔진을 <b>Google 음성 인식 및 합성</b>으로 바꾸고 → 일본어 음성 데이터를 설치하세요.</span></div></div>`:''}<p class="startrow"><button class="btn sm startbtn" data-act="startpick">📍 시작 위치 바꾸기</button></p><p class="here">${ci<N?`지금 <b>${ci+1}역 <span class="jp">${S[ci].n}</span></b> · ${S[ci].ko}`:'<b>모든 역 통과</b>'}</p>
-  <button class="go" data-act="go"><b>${n.kind==='none'?'오늘은 여기까지':'이어서 하기 ▶'}</b><span>${esc(n.label)}</span></button>
+  const fresh0=!kn&&!SK();const fp=fluPool().length,rdT=st.rd&&st.rd.days&&st.rd.days[today()]||0;
+  const mocks=TR.filter(t=>t.key!=='intro');
+  return `${installBanner()}<header class="hd"><h1>일본어 공부하자</h1><div class="hd-ic"><button class="ic ${st.mute?'off':''}" data-act="mute" aria-pressed="${!!st.mute}" aria-label="${st.mute?'소리 켜기':'소리 끄기'}">${st.mute?'🔇':'🔈'}</button></div></header>
+  ${st.mute?'<p class="mutenote">🔇 소리 없이 모드 — 듣기 문제가 읽기 문제로 바뀌어요</p>':''}
+  ${VOK===false&&!st.mute?`<div class="ib" role="note"><div><b>🔈 이 기기에 일본어 음성이 없어요</b><span>앱 음성 파일은 그대로 나오지만 다독 문장은 소리가 안 날 수 있어요. 설정에서 <b>텍스트 음성 변환</b> 검색 → 기본 엔진을 <b>Google 음성 인식 및 합성</b>으로 → 일본어 음성 데이터 설치.</span></div></div>`:''}
+  ${(()=>{const t=ci<N?trackOf(ci):TR[TR.length-1];return `<p class="tname">${t.name} · ${TR.indexOf(t)+1}/${TR.length} 노선</p>${route(t)}`})()}
+  ${(()=>{const L=nextStep(true),due=dueCards().length,ro=revOK(),big=due>=40&&ro;
+    const head=ci<N?`<p class="here">지금 <b>${ci+1}역 <span class="jp">${S[ci].n}</span></b> · ${S[ci].ko}</p>`:'<p class="here"><b>모든 역 통과</b></p>';
+    const rev=due&&ro?`<button class="revbtn ${big?'big':''}" data-act="gorev"><b>🔁 복습 ${Math.min(15,due)}장${due>15?` <small>(밀린 ${due}장)</small>`:''}</b><span>${big?'복습이 많이 밀렸어요. 조금씩이라도 정리하면 기억이 오래가요.':'잊기 직전 카드예요. 레슨 전에 먼저 하면 더 오래 기억돼요.'}</span></button><button class="peek skiprev" data-act="revskip">오늘 복습 건너뛰기 (내일 다시)</button>`:(revSkipped()&&due?'<p class="mutenote">오늘 복습은 건너뛰었어요 · <button class="peek" data-act="revunskip" style="margin:0;padding:0">다시 하기</button></p>':'');
+    const main=`<button class="go" data-act="golesson" ${L.kind==='none'?'disabled':''}><b>${L.kind==='none'?'오늘 새 레슨 끝':'진도 이어가기 ▶'}</b><span>${esc(L.label)}</span></button>`;
+    return head+(ci<4&&!SK()?'<button class="btn sm tipbtn" data-act="startpick">😎 히라가나·가타카나는 이미 알아요 → 건너뛰기</button>':'')+rev+main})()}
   <div class="stats"><div><b>${hrs(st.time)}h</b><small>공부 시간</small></div><div><b>${kn}</b><small>익힌 카드 / ${ALL.length}</small></div><div><b>${dueCards().length}</b><small>복습 대기 · 오늘 새 레슨 ${lessonsToday()}/${capN()}</small></div><div><b>${lt}</b><small>하루 뒤 기억률 (목표 80%+)</small></div></div>
-  <button class="mt ${st.mute?'on':''}" data-act="mute">${st.mute?'🔇 소리 없이 모드 켜짐 — 듣기 문제 대신 읽기 문제':'🔈 소리 켜짐 · 차 안이나 조용한 곳이면 눌러서 소리 없이 모드'}</button>
   ${TR.filter(t=>(st.cp[t.key]||0)>=CPP).map(t=>`<div class="cert"><b>${t.cp} 합격 — ${st.cp[t.key]}점</b></div>`).join('')}
-  <div class="links ctl"><button class="btn" data-act="cap">📚 새 레슨 ${capN()}개/일</button><button class="btn" data-act="rate">🔊 속도 ${(st.rate||.85).toFixed(2)}×</button><button class="btn" data-act="voice">🗣 ${({mix:'남녀 번갈아',f:'여자 목소리',m:'남자 목소리'})[st.voice||'mix']}</button>${fluPool().length>=20?`<button class="btn" data-act="flu">⚡ 스피드 복습</button>`:''}</div>
-  <button class="mt" data-act="read">📖 다독 — 배운 단어로 된 실제 문장 읽기·듣기${st.rd&&st.rd.days&&st.rd.days[today()]?` (오늘 ${st.rd.days[today()]}문장)`:''}</button>
-  <div class="links"><button class="btn" data-act="method">공부법과 논문 근거</button><button class="btn" data-act="install">홈 화면에 추가하기</button></div>
-  ${TR.map(t=>`<h2>${t.name} <small>(${t.from+1}~${t.to+1}역)</small></h2>${t.key!=='intro'&&unlocked(t.from)?`<button class="mt" data-mock="${t.key}">📝 ${t.key.toUpperCase()} 실전 모의고사 40문제 — 문자·어휘·문법·독해·청해, JLPT 방식 환산 점수${st.mock&&st.mock[t.key]?` (최고 ${st.mock[t.key]}%)`:''}</button>`:''}
+`;
+}
+
+function wrongList(){const W=st.wr||{};return Object.keys(W).map(id=>[CID[id],W[id]]).filter(x=>x[0]).sort((a,b)=>b[1].t-a[1].t)}
+function wrongView(){const L=wrongList();
+  return `<div class="top"><button class="x" data-tab="practice" aria-label="연습으로">←</button><span class="tag">틀린 문제 모음</span></div>
+  <h1>틀린 문제 모음</h1><p class="sub">틀린 카드가 최근 순으로 모여요. 다른 날에 2번 맞히면 목록에서 빠져요.</p>
+  ${L.length?`<button class="go" data-act="wrongdrill"><b>틀린 것만 다시 풀기 ▶</b><span>${Math.min(20,L.length)}장 · 많이 틀린 것부터</span></button>
+  <ul class="wl2">${L.map(([c,w])=>`<li>${pic(c)}<div class="wt"><b class="jp" lang="ja">${esc(c.t==='read'||c.t==='dlg'?(c.q||c.j).slice(0,40):c.j.length>40?c.j.slice(0,40)+'…':c.j)}</b>${c.r&&c.r!==c.j&&c.t!=='kanji'?` <span class="jp r2">${esc(c.r)}</span>`:''}<small>${esc(c.t==='fill'||c.t==='para'||c.t==='quick'||c.t==='read'||c.t==='dlg'?'정답: '+(c.a||''):c.k)}</small></div><span class="wn">✗${w.n}</span>${c.t==='word'||c.t==='kana'||c.t==='phrase'?`<button class="say" data-say="${esc(c.sy||c.j)}" aria-label="듣기">🔊</button>`:''}</li>`).join('')}</ul>
+  <p class="note"><button class="peek" data-act="wrongclear" style="margin:0;padding:0">목록 비우기</button></p>`:'<div class="flash"><p class="hint">아직 틀린 문제가 없어요. 레슨·복습·시험에서 틀리면 여기에 모여요.</p></div>'}`}
+function practice(){const fp=fluPool().length,rdT=st.rd&&st.rd.days&&st.rd.days[today()]||0,mocks=TR.filter(t=>t.key!=='intro');
+  return `<h1>연습</h1><p class="sub">'이어서 하기'와 별개로, 원할 때 골라서 하는 연습이에요.</p>
+  
+  <button class="feat" data-act="read"><span class="fi" aria-hidden="true">📖</span><span class="ft"><b>다독 · 문장 읽고 듣기${rdT?` <small>오늘 ${rdT}문장</small>`:''}</b><small>배운 단어로 된 실제 일본어 문장을 하나씩 많이 읽어요. 모르는 단어는 눌러서 뜻 확인.</small></span></button>
+  <button class="feat" data-act="wrong"><span class="fi" aria-hidden="true">❌</span><span class="ft"><b>틀린 문제 모음${(()=>{const n=Object.keys(st.wr||{}).length;return n?` <small>${n}개</small>`:''})()}</b><small>지금까지 틀린 카드만 모아 보고, 틀린 것만 다시 풀어요.</small></span></button>
+  <button class="feat" data-act="flu" ${fp>=20?'':'disabled'}><span class="fi" aria-hidden="true">⚡</span><span class="ft"><b>스피드 복습</b><small>${fp>=20?'이미 익힌 카드 20장을 2.5초 안에 떠올리는 연습. 회화·청해 속도를 키워요.':`익힌 카드가 20장이 되면 열려요 (지금 ${fp}장)`}</small></span></button>
+  <div class="feat as-div"><span class="fi" aria-hidden="true">📝</span><span class="ft"><b>실전 모의고사</b><small>JLPT 형식 40문제 · 실제 시험처럼 환산 점수와 과목별 기준점</small>
+    <span class="mrow">${mocks.map(t=>`<button class="chip" data-mock="${t.key}" ${unlocked(t.from)?'':'disabled'}>${unlocked(t.from)?'':'🔒 '}${t.key.toUpperCase()}${st.mock&&st.mock[t.key]?` ${st.mock[t.key]}%`:''}</button>`).join('')}</span>${mocks.some(t=>!unlocked(t.from))?'<small>🔒 노선의 첫 역이 열리면 풀 수 있어요</small>':''}</span></div>
+  </section>
+`}
+function routeV(){const cur=curSt(),ci=cur<0?N:cur;
+  return `<h1>노선과 역</h1><p class="sub">입문 12역 → N5 5역 → N4 6역 → N3 12역. 역을 누르면 레슨 목록과 통과 시험이 나와요.</p>
+  
+  ${TR.map(t=>`<h2 class="trh">${t.name} <small>(${t.from+1}~${t.to+1}역)</small></h2>
   ${S.slice(t.from,t.to+1).map((s,k)=>{const i=t.from+k,lk=!unlocked(i),d=LES[i].filter((_,j)=>st.done[i+'-'+j]).length;return `<button class="stage ${st.pass[i]>=PASS?'done':''} ${lk?'lock':''}" data-stage="${i}"><div class="no">${lk?'🔒':i+1}</div><div><h3><span class="jp">${s.n}</span>${s.ko}</h3><p>${s.goal}</p><div class="meta"><span>레슨 <b>${d}/${LES[i].length}</b></span><span>카드 <b>${s.cards.length}</b></span><span>익힘 <b>${stagePct(i)}%</b></span><span>시험 <b>${st.pass[i]}점</b>${st.pass[i]>=PASS?' · 통과':''}</span></div></div></button>`}).join('')}
   <div class="stage ${(st.cp[t.key]||0)>=CPP?'done':''}" style="cursor:default"><div class="no">終</div><div><h3>${t.cp}</h3><p>${t.name} 전 범위 ${cpN(t)}문제. 모든 역을 통과하고, 3일 간격 복습을 통과한 카드가 전체 85%·모든 역 80% 이상이면 열려요. (${gateTxt(t)})</p><div class="meta"><span>최고 <b>${st.cp[t.key]||0}점</b></span></div></div></div>`).join('')}
-  <p class="note">이 앱은 손으로 쓰는 연습이 없고, JLPT도 쓰기 영역이 없습니다. 발음은 기기 내장 일본어 음성을 씁니다. 기록은 이 기기에만 저장됩니다. 연습 중 90초 동안 손을 안 대면 시간 측정이 멈춥니다.</p>
-  <p class="note"><button class="peek" data-act="reset" style="margin:0;padding:0">기록 초기화</button></p>`;
-}
+`}
+function settings(){const V={mix:'남녀 번갈아',f:'여자 목소리',m:'남자 목소리'};const row=(act,t,d,v)=>`<button class="setrow" data-act="${act}"><span><b>${t}</b><small>${d}</small></span><span class="sv">${v}</span></button>`;
+  return `<h1>설정</h1>
+  <h2>공부</h2>
+  ${row('startpick','📍 시작 위치','히라가나를 알면 건너뛰기 · 원하는 역부터',`${SK()+1}역부터 ›`)}
+  ${row('cap','📚 하루 새 레슨','많을수록 빠르지만 복습이 쌓여요',`${capN()}개 ↻`)}
+  <h2>소리</h2>
+  ${row('mute','🔇 소리 없이 모드','차 안이나 조용한 곳에서 · 듣기 문제가 읽기 문제로',st.mute?'켜짐':'꺼짐')}
+  ${row('voice','🗣 목소리','AI 음성 · 대화 문제는 남녀가 나눠 말해요',V[st.voice||'mix']+' ↻')}
+  ${row('rate','🔊 말하기 속도','눌러서 바꾸면 미리 들려줘요',(st.rate||.85).toFixed(2)+'× ↻')}
+  <h2>앱</h2>
+  ${row('install','📲 홈 화면에 추가하기','앱처럼 아이콘으로 바로 열기','›')}
+  ${row('method','📄 공부법과 논문 근거','이 앱에 쓴 학습법과 근거 논문','›')}
+  <p class="note">손으로 쓰는 연습은 없어요(JLPT도 쓰기 영역 없음). 소리는 AI 음성 파일을 쓰고, 파일이 없는 문장은 기기 음성으로 읽어요. 기록은 이 기기에만 저장돼요. 연습 중 90초 동안 손을 안 대면 시간 측정이 멈춰요.</p>
+  <p class="note"><button class="peek" data-act="reset" style="margin:0;padding:0">기록 초기화</button></p>`}
 
 function stage(){
   const s=S[vs],ls=LES[vs],all=ls.every((_,j)=>st.done[vs+'-'+j]),lk=!unlocked(vs);
-  return `<div class="top"><button class="x" data-act="home" aria-label="홈">←</button><span class="tag">${vs+1}역 / ${N} · ${trackOf(vs).name}</span></div>
+  return `<div class="top"><button class="x" data-tab="route" aria-label="노선으로">←</button><span class="tag">${vs+1}역 / ${N} · ${trackOf(vs).name}</span></div>
   <h1><span class="jp" style="color:var(--redt)">${s.n}</span> ${s.ko}</h1><p class="sub">목표: ${s.goal}</p>
   ${lk?`<div class="how">🔒 ${vs}역 통과 시험(${PASS}점)을 통과하면 열립니다. 완전 학습: 앞 단계를 확실히 한 뒤 넘어가야 뒤가 무너지지 않아요.</div>`:''}
   <h2>레슨 ${ls.length}개</h2>
@@ -977,7 +1046,7 @@ const SRC=[
  ['완전 학습 (통과해야 다음)','단원마다 기준을 넘어야 다음으로. 108개 비교 연구 메타분석에서 시험 성적이 평균 0.52 표준편차 상승.','각 역은 통과 시험 85점 이상이어야 다음 역이 열림. 떨어지면 틀린 카드만 다시 잡고 재시험.','Kulik, Kulik & Bangert-Drowns (1990), Review of Educational Research','https://doi.org/10.3102/00346543060002265'],
 ];
 function method(){
-  return `<div class="top"><button class="x" data-act="home" aria-label="홈">←</button><span class="tag">공부법</span></div>
+  return `<div class="top"><button class="x" data-act="settings" aria-label="설정으로">←</button><span class="tag">공부법</span></div>
   <h1>이 앱의 공부법과 근거</h1><p class="sub">원리마다 무엇인지, 앱에서 어떻게 쓰는지, 근거 논문을 적었습니다.</p>
   ${SRC.map(([t,w,h,c,u],i)=>`<section class="src"><h2>${i+1}. ${t}</h2><p>${w}</p><p class="use"><b>앱에서:</b> ${h}</p><p class="cite"><a href="${u}" target="_blank" rel="noopener">${c}</a></p></section>`).join('')}
   <section class="src"><h2>하루 새 레슨 ${capN()}개 상한 · 최종 시험 조건</h2><p>가상 학습자 시뮬레이션에서 몰아서 하면 시험은 통과해도 1주 뒤 기억이 크게 떨어졌습니다. 그래서 새 레슨은 하루 ${capN()}개까지, 최종 시험은 3일 간격 복습을 통과한 카드가 전체 85%, 모든 역에서 80% 이상일 때 열립니다.</p></section>
@@ -990,7 +1059,7 @@ function method(){
   <section class="src"><h2>한계</h2><p>원리마다 근거는 탄탄하지만, 이 앱 자체를 사람 대상 실험으로 검증한 것은 아닙니다. 홈의 '하루 뒤 기억률'이 80% 이상이면 제대로 작동 중, 그보다 낮으면 하루 공부량을 줄이세요. 한자와 빠른 실제 회화 듣기는 이 과정 범위 밖입니다.</p></section>`;
 }
 function install(){
-  return `<div class="top"><button class="x" data-act="home" aria-label="홈">←</button><span class="tag">설치</span></div>
+  return `<div class="top"><button class="x" data-act="settings" aria-label="설정으로">←</button><span class="tag">설치</span></div>
   <h1>홈 화면에 추가하기</h1><p class="sub">이 페이지 주소를 홈 화면에 아이콘으로 꽂아 두면 앱처럼 바로 열립니다.</p>${isStandalone()?'<p class="fb ok">이미 앱으로 설치되어 실행 중이에요.</p>':BIP?'<button class="go" data-act="instgo"><b>📲 지금 설치하기</b><span>버튼 한 번이면 홈 화면에 앱이 생겨요</span></button>':''}
   <section class="src"><h2>안드로이드 (크롬)</h2><p>이 페이지를 크롬으로 열기 → 오른쪽 위 ⋮ → <b>앱 설치</b>(또는 홈 화면에 추가). 설치하면 오프라인에서도 열립니다.</p></section>
   <section class="src"><h2>아이폰 (사파리)</h2><p>이 페이지를 사파리로 열기 → 아래 공유 버튼 → <b>홈 화면에 추가</b>.</p></section>
@@ -1030,7 +1099,7 @@ function session(){
     const prompt=q.kind==='listen'?`<button class="bigsay" data-say="${esc(q.say)}" aria-label="다시 듣기">🔊</button>${q.peek||ans?`<div class="${q.q2?'passage':'mid'} jp" style="margin-top:12px">${esc(q.pt||q.c.j)}</div>`:`<button class="peek" data-act="peek">소리가 안 나요 → 글자 보기</button>`}${q.q2?`<div class="q2 jp">${esc(q.q2)}</div>`:''}`
       :`${(q.pj||q.ph)&&(q.ph||q.say)?`<button class="say" data-say="${esc(q.ph||q.say)}" aria-label="듣기">🔊</button>`:''}<div class="${q.passage?'passage':q.big?'big':q.pj?'mid':'ko'} ${q.pj?'jp':''}">${esc(q.p)}</div>${q.q2?`<div class="q2 jp">${esc(q.q2)}</div>`:''}${q.sub?`<div class="r">${esc(q.sub)}</div>`:''}${heard}`;
     body=`<div class="flash" style="min-height:200px">${prompt}<div class="hint">${q.hint}</div></div>
-    <div class="opts">${q.opts.map((o,i)=>{let cls='';if(ans){if(o===q.ans)cls='right';else if(i===q.picked)cls='wrong'}return `<button class="opt ${q.oj?'jp':''} ${cls}" data-opt="${i}" ${ans?'disabled':''}>${esc(o)}${cls==='right'?'<span class="mk">✓ 정답</span>':cls==='wrong'?'<span class="mk">✗ 내 답</span>':''}</button>`}).join('')}</div>
+    ${q.hide&&!ans?`<div class="row"><button class="btn pri" data-act="reveal">떠올렸어요 → 보기에서 고르기</button></div>`:''}<div class="opts" ${q.hide&&!ans?'hidden':''}>${q.opts.map((o,i)=>{let cls='';if(ans){if(o===q.ans)cls='right';else if(i===q.picked)cls='wrong'}return `<button class="opt ${q.oj?'jp':''} ${cls}" data-opt="${i}" ${ans?'disabled':''}>${esc(o)}${cls==='right'?'<span class="mk">✓ 정답</span>':cls==='wrong'?'<span class="mk">✗ 내 답</span>':''}</button>`}).join('')}</div>
     ${ans&&q.dt&&s.kind==='flu'?`<div class="fb ${q.dt<=2.5?'ok':''}">${q.dt.toFixed(1)}초 ${q.dt<=2.5?'— 자동화 수준':'— 목표 2.5초 이내'}</div>`:''}${ans&&q.tr?`<div class="tr"><b>해석</b> ${esc(q.tr)}</div>`:''}${ans?`${!q.ok&&q.c.t!=='gram'&&!q.tr?`<div class="fb no">${pic(q.c)}<span class="jp">${esc(q.c.j)}</span> = ${q.c.r&&q.c.r!==q.c.j?esc(q.c.r)+' · ':''}${esc(q.c.k)}${q.c.m?`<div class="mn">💡 ${esc(q.c.m)}</div>`:''}${hanja(q.c)}</div>`:''}<div class="row"><button class="btn pri" data-act="next">다음</button></div>`:''}`;
   }
   return top(pr)+body;
@@ -1078,6 +1147,7 @@ document.addEventListener('click',e=>{
   if(d.unsel!==undefined){ses.q.sel.splice(Number(d.unsel),1);render();return}
   if(d.tok!==undefined){rdq.w=rdq.w===Number(d.tok)?null:Number(d.tok);const x=rdq.s.t[Number(d.tok)];say(x[1]||x[0]);render();return}
   if(d.rdlv!==undefined){rdS().lv=d.rdlv;save();rdNext();render();return}
+  if(d.tab!==undefined){view=d.tab;ses=null;render();return}
   if(d.rdsay!==undefined){rdSay();return}
   if(d.start!==undefined){st.start=Number(d.start);save();view='home';render();aWarm();return}
   if(d.rdadd!==undefined){setSrs(d.rdadd,0);save();render();return}
@@ -1093,6 +1163,14 @@ document.addEventListener('click',e=>{
   else if(a==='instgo'){if(BIP){BIP.prompt();BIP.userChoice.finally(()=>{BIP=null;render()})}}
   else if(a==='insthide'){try{localStorage.setItem('jpInstHide',String(now()))}catch(e){}render()}
   else if(a==='instchrome'){location.href='intent://'+location.host+location.pathname+'#Intent;scheme=https;package=com.android.chrome;end'}
+  else if(a==='settings'){view='settings';render()}
+  else if(a==='golesson'){const L=nextStep(true);if(L.kind!=='none')go(L)}
+  else if(a==='gorev'){go({kind:'review'})}
+  else if(a==='wrong'){view='wrong';render()}
+  else if(a==='wrongdrill'){const L=wrongList().sort((a,b)=>b[1].n-a[1].n).slice(0,20).map(x=>x[0]);startDrill(L,'review');render();speakNow()}
+  else if(a==='wrongclear'){if(!resetArm){resetArm=true;t.textContent='정말 비우려면 한 번 더 누르세요';return}st.wr={};resetArm=false;save();render()}
+  else if(a==='revskip'){st.revSkip=today();save();render()}
+  else if(a==='revunskip'){st.revSkip=null;save();render()}
   else if(a==='startpick'){view='start';render()}
   else if(a==='read'){view='read';if(RD&&!rdq)rdNext();render();if(rdq&&rdS().lis)rdSay()}
   else if(a==='rdshow'){rdq.show=true;render()}
@@ -1107,6 +1185,7 @@ document.addEventListener('click',e=>{
   else if(a==='check'){const q=ses.q;answer(q.sel.map(i=>q.chips[i]).join(' ')===q.ans);render()}
   else if(a==='clr'){ses.q.sel=[];render()}
   else if(a==='peek'){ses.q.peek=1;render()}
+  else if(a==='reveal'){ses.q.hide=0;render();const o=app.querySelector('[data-opt]');if(o&&_kb)o.focus()}
   else if(a==='show'){ses.q.shown=1;say(ses.q.say);render()}
   else if(a==='selfyes'||a==='selfno'){answer(a==='selfyes');advance();render();speakNow()}
   else if(a==='mute'){st.mute=!st.mute;save();if(st.mute){try{speechSynthesis.cancel()}catch(e){}if(view==='ses'&&ses&&ses.q&&ses.q.kind==='listen'&&ses.q.ok===undefined&&ses.phase!=='pre')ses.q=mkQ(ses.q.c)}render()}
